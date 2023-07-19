@@ -1,5 +1,5 @@
 import "./App.css";
-import Classifier from "./components/Classifier/Classifier";
+import Classifier from "./components/classifier/Classifier";
 
 function App() {
   return (

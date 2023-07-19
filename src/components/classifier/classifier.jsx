@@ -1,7 +1,7 @@
 import React from "react";
-import BalanceBanner from "./Banner/BalanceBanner";
-import Location from "./Locations/Location";
-import Categories from "./Categories/Categories";
+import BalanceBanner from "./banner/BalanceBanner";
+import Location from "./locations/Location";
+import Categories from "./categories/Categories";
 
 const Classifier = () => {
   return (
