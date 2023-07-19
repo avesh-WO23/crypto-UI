@@ -1,10 +1,9 @@
+import { Box, Typography, styled } from "@mui/material";
 import React from "react";
-import { styled, Box, Button, Typography } from "@mui/material";
-import SeverityButton from "../common/SeverityButton";
+import SeverityButton from "../../common/SeverityButton";
 
 const Banner = styled(Box)({
   padding: "16px",
-  //   backgroundColor: "#FF891A",
   backgroundImage: "linear-gradient(45deg, white 40% , #FF891A30);",
 });
 
@@ -30,11 +29,9 @@ const BalanceBanner = () => {
         <SeverityButton text="Medium" bgColor="#FF891A" color="#000" />
       </Box>
       <Box>
-        <Heading variant="h3" fontSize={14}>
-          Total Balance
-        </Heading>
+        <Heading variant="h3">Total Balance</Heading>
         <Typography variant="h1" fontSize={23}>
-          $850
+          802 $
         </Typography>
       </Box>
     </Banner>

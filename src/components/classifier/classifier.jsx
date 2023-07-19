@@ -1,11 +1,15 @@
 import React from "react";
-import BalanceBanner from "./balanceBanner";
+import BalanceBanner from "./Banner/BalanceBanner";
+import Location from "./Locations/Location";
+import Categories from "./Categories/Categories";
 
 const Classifier = () => {
   return (
-    <div>
+    <>
       <BalanceBanner />
-    </div>
+      <Location />
+      <Categories />
+    </>
   );
 };
 
