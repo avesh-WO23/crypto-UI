@@ -6,16 +6,6 @@ import MenuItem from "@mui/material/MenuItem";
 import { alpha, styled } from "@mui/material/styles";
 import * as React from "react";
 
-const StaticMenu = [
-  "All locations",
-  "USA",
-  "India",
-  "Greece",
-  "Colombia",
-  "Israel",
-  "Germany",
-];
-
 const StyledMenu = styled((props) => (
   <Menu
     elevation={0}
@@ -61,13 +51,14 @@ const StyledMenu = styled((props) => (
 
 const ITEM_HEIGHT = 48;
 
-export default function LocationMenu() {
+export default function LocationMenu({ country, setCountry, StaticMenu }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = (menu) => {
+    setCountry(menu);
     setAnchorEl(null);
   };
 
@@ -87,7 +78,7 @@ export default function LocationMenu() {
         }}
         endIcon={anchorEl ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
       >
-        Options
+        {country}
       </Button>
       <StyledMenu
         id="demo-customized-menu"
@@ -96,7 +87,7 @@ export default function LocationMenu() {
         }}
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
+        onClose={() => handleClose(country)}
         PaperProps={{
           style: {
             maxHeight: ITEM_HEIGHT * 4.5,
@@ -104,9 +95,13 @@ export default function LocationMenu() {
           },
         }}
       >
-        {StaticMenu.map((menu) => {
+        {StaticMenu.map((menu, ind) => {
           return (
-            <MenuItem onClick={handleClose} disableRipple>
+            <MenuItem
+              key={`${menu}-${ind}`}
+              onClick={() => handleClose(menu)}
+              disableRipple
+            >
               {menu}
             </MenuItem>
           );

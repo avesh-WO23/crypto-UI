@@ -1,5 +1,5 @@
 import { Box, Typography, styled } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import LocationMenu from "./LocationMenu";
 import StackedBarChart from "./StackedChart";
 
@@ -15,14 +15,29 @@ const Heading = styled(Typography)({
   fontWeight: 600,
 });
 
+const StaticMenu = [
+  "All locations",
+  "USA",
+  "India",
+  "Greece",
+  "Colombia",
+  "Israel",
+  "Germany",
+];
+
 const Location = () => {
+  const [country, setCountry] = useState(StaticMenu[0]);
   return (
     <>
       <LocationContainer>
         <Heading variant="h2">Location</Heading>
-        <LocationMenu />
+        <LocationMenu
+          country={country}
+          setCountry={setCountry}
+          StaticMenu={StaticMenu}
+        />
       </LocationContainer>
-      <StackedBarChart />
+      <StackedBarChart country={country} setCountry={setCountry} />
     </>
   );
 };

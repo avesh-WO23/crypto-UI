@@ -27,8 +27,8 @@ const Categories = () => {
     <Container>
       <Heading>Categories</Heading>
       <CategoriesList>
-        {CategoryLists.map((category) => {
-          return <CategoryChip label={category} />;
+        {CategoryLists.map((category, ind) => {
+          return <CategoryChip key={`${category}-${ind}`} label={category} />;
         })}
       </CategoriesList>
     </Container>

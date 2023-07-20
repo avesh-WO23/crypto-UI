@@ -1,6 +1,6 @@
 import { Box, Typography, styled } from "@mui/material";
 import React from "react";
-import SeverityButton from "../../common/SeverityButton";
+import SeverityButton from "../../common/buttons/SeverityButton";
 
 const Banner = styled(Box)({
   padding: "16px",
