@@ -6,6 +6,12 @@ import MenuItem from "@mui/material/MenuItem";
 import { alpha, styled } from "@mui/material/styles";
 import * as React from "react";
 
+const MenuButton = styled(Button)({
+  textTransform: "capitalize",
+  fontWeight: 600,
+  fontSize: "16px",
+});
+
 const StyledMenu = styled((props) => (
   <Menu
     elevation={0}
@@ -64,7 +70,7 @@ export default function LocationMenu({ country, setCountry, StaticMenu }) {
 
   return (
     <div>
-      <Button
+      <MenuButton
         id="demo-customized-button"
         aria-controls={open ? "demo-customized-menu" : undefined}
         aria-haspopup="true"
@@ -79,7 +85,7 @@ export default function LocationMenu({ country, setCountry, StaticMenu }) {
         endIcon={anchorEl ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
       >
         {country}
-      </Button>
+      </MenuButton>
       <StyledMenu
         id="demo-customized-menu"
         MenuListProps={{

@@ -16,6 +16,8 @@ const GenerateButton = styled(Button)({
   backgroundRepeat: "no-repeat",
   backgroundPosition: "left 15px center",
   fontSize: "12px",
+  textTransform: "capitalize",
+  fontWeight: 600,
 });
 
 const ReportButton = () => {

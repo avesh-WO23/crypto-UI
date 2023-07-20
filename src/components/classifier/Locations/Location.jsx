@@ -30,7 +30,7 @@ const Location = () => {
   return (
     <>
       <LocationContainer>
-        <Heading variant="h2">Location</Heading>
+        <Heading variant="h2">Locations</Heading>
         <LocationMenu
           country={country}
           setCountry={setCountry}

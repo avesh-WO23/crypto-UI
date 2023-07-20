@@ -20,6 +20,8 @@ const CategoriesList = styled(Box)({
 
 const CategoryChip = styled(Chip)({
   backgroundColor: "#F1F4F6",
+  fontSize: "14px",
+  fontWeight: "bold",
 });
 
 const Categories = () => {
