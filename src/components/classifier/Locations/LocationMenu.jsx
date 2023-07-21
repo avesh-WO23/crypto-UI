@@ -81,6 +81,9 @@ export default function LocationMenu({ country, setCountry, StaticMenu }) {
         sx={{
           backgroundColor: anchorEl ? "#E8F2FF" : "transparent",
           color: "#000",
+          // "& :hover": {
+          //   backgroundColor: "rgb(55, 65, 81)",
+          // },
         }}
         endIcon={anchorEl ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
       >

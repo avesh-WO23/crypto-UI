@@ -1,15 +1,9 @@
+import { Box, Chip, styled } from "@mui/material";
 import React from "react";
-import { Chip, Typography, styled, Box } from "@mui/material";
+import { Container } from "../../common/Container";
+import { SectionHeading } from "../../common/styled/SectionHeading";
 
 const CategoryLists = ["Terrorism", "Exchange", "Sanctions", "Criminal"];
-const Container = styled(Box)({
-  padding: "16px",
-});
-
-const Heading = styled(Typography)({
-  fontWeight: 600,
-  fontSize: "16px",
-});
 
 const CategoriesList = styled(Box)({
   paddingTop: "20px",
@@ -27,7 +21,7 @@ const CategoryChip = styled(Chip)({
 const Categories = () => {
   return (
     <Container>
-      <Heading>Categories</Heading>
+      <SectionHeading>Categories</SectionHeading>
       <CategoriesList>
         {CategoryLists.map((category, ind) => {
           return <CategoryChip key={`${category}-${ind}`} label={category} />;

@@ -1,5 +1,6 @@
-import { Box, Typography, styled } from "@mui/material";
+import { Box, styled } from "@mui/material";
 import React, { useState } from "react";
+import { SectionHeading } from "../../common/styled/SectionHeading";
 import LocationMenu from "./LocationMenu";
 import StackedBarChart from "./StackedChart";
 
@@ -7,12 +8,7 @@ const LocationContainer = styled(Box)({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  padding: "16px",
-});
-
-const Heading = styled(Typography)({
-  fontSize: "18px",
-  fontWeight: 600,
+  padding: "20px 16px 0 16px",
 });
 
 const StaticMenu = [
@@ -30,7 +26,7 @@ const Location = () => {
   return (
     <>
       <LocationContainer>
-        <Heading variant="h2">Locations</Heading>
+        <SectionHeading variant="h2">Locations</SectionHeading>
         <LocationMenu
           country={country}
           setCountry={setCountry}

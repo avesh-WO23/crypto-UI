@@ -65,6 +65,7 @@ const StackedBarChart = ({ country, setCountry }) => {
           },
         },
         chart: {
+          width: "100%",
           type: "bar",
           height: 350,
           stacked: true,
@@ -121,6 +122,7 @@ const StackedBarChart = ({ country, setCountry }) => {
             fontFamily: undefined,
             color: "#263238",
           },
+          offsetX: 10,
         },
         fill: {
           opacity: 1,
