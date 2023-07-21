@@ -1,5 +1,6 @@
 .App {
   /* text-align: center; */
+  font-family: "Roboto", sans-serif;
 }
 
 .App-logo {
@@ -35,4 +36,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/*Chart*/
+.apexcharts-xaxis.apexcharts-yaxis-inversed > line {
+  stroke: #8e9eae;
+  stroke-dasharray: 3, 3;
+}
+.apexcharts-yaxis.apexcharts-xaxis-inversed {
+  stroke: none;
+  stroke-opacity: 0;
 }

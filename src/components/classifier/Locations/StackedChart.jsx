@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactApexChart from "react-apexcharts";
-import styles from "./StackedChart.module.css";
 
 const StackedBarChart = ({ country, setCountry }) => {
   // const [chartFilter, setChartFilter] = useState();
@@ -17,13 +16,15 @@ const StackedBarChart = ({ country, setCountry }) => {
           axisTicks: {
             show: false,
           },
-          labels: {
-            style: {
-              cssClass: `${styles.yBorder}`,
-            },
-          },
         },
         xaxis: {
+          axisBorder: {
+            borderType: "dotted",
+            // color: "transparent",
+            strokeWidth: 10,
+            offsetX: 12,
+            offsetY: 0,
+          },
           axisTicks: {
             show: true,
             borderType: "dotted",
@@ -37,6 +38,7 @@ const StackedBarChart = ({ country, setCountry }) => {
             style: {
               colors: "#8E9EAE",
               fontSize: "12px",
+              fontWeight: "500",
             },
             formatter: function (value, timestamp, opts) {
               return value + "%";
@@ -46,6 +48,17 @@ const StackedBarChart = ({ country, setCountry }) => {
         grid: {
           show: false,
           yaxis: {
+            lines: {
+              show: false,
+            },
+          },
+          row: {
+            opacity: 0,
+          },
+          column: {
+            opacity: 0,
+          },
+          xaxis: {
             lines: {
               show: false,
             },
@@ -90,17 +103,18 @@ const StackedBarChart = ({ country, setCountry }) => {
         plotOptions: {
           bar: {
             horizontal: true,
+            // borderRadius: 3, //for bar radius
           },
         },
         tooltip: {
           y: {
             formatter: function (val) {
-              return val + "K";
+              return val + "%";
             },
           },
         },
         title: {
-          text: country === "All locations" ? "" : `All > ${country}`,
+          text: country === "All locations" ? "    " : `All > ${country}`,
           style: {
             fontSize: "14px",
             fontWeight: 600,
@@ -147,28 +161,28 @@ const StackedBarChart = ({ country, setCountry }) => {
       }}
       series={[
         {
-          name: "USA (4) 35%",
-          data: [44],
+          name: "USA (4) <span style='font-weight:800;'>35%</span>",
+          data: [35],
         },
         {
-          name: "Colombia (3)  25%",
-          data: [53],
-        },
-        {
-          name: "India (2) 19%",
-          data: [12],
-        },
-        {
-          name: "Israel (3) 13%",
-          data: [9],
-        },
-        {
-          name: "Greece (1) 5%",
+          name: "Colombia (3)  <span style='font-weight:800;'>25%</span>",
           data: [25],
         },
         {
-          name: "Other 3%",
-          data: [35],
+          name: "India (2) <span style='font-weight:800;'>19%</span>",
+          data: [19],
+        },
+        {
+          name: "Israel (3) <span style='font-weight:800;'>13%</span>",
+          data: [13],
+        },
+        {
+          name: "Greece (1) <span style='font-weight:800;'>5%</span>",
+          data: [5],
+        },
+        {
+          name: "Other <span style='font-weight:800;'>3%</span>",
+          data: [3],
         },
       ]}
       type="bar"
