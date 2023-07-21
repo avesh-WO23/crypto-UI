@@ -1,10 +1,6 @@
+import { Box, Button, styled } from "@mui/material";
 import React from "react";
-import { Button, styled, Box } from "@mui/material";
 import ReportIcon from "../../../assets/svg/Report.svg";
-
-const Container = styled(Box)({
-  padding: "16px",
-});
 
 const GenerateButton = styled(Button)({
   padding: "10px 10px 10px 45px",
@@ -22,9 +18,9 @@ const GenerateButton = styled(Button)({
 
 const ReportButton = () => {
   return (
-    <Container sx={{ textAlign: "right" }}>
+    <Box sx={{ width: "100%", textAlign: "right", marginLeft: "-16px" }}>
       <GenerateButton>Generate report</GenerateButton>
-    </Container>
+    </Box>
   );
 };
 

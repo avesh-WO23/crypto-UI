@@ -1,16 +1,19 @@
 import React from "react";
 import { Button, styled } from "@mui/material";
 
-const MainButton = styled(Button)({
-  borderRadius: "10px",
-  padding: "5px 10px",
+const BannerButton = styled(Button)({
+  borderRadius: "7px",
+  padding: "0 18px",
   fontWeight: "bold",
   fontSize: "14px",
+  textTransform: "capitalize",
 });
 
-const SeverityButton = ({ text, bgColor, color }) => {
+const SeverityButton = ({ text, bgColor, color, sx, ...props }) => {
   return (
-    <MainButton sx={{ bgcolor: bgColor, color: color }}>{text}</MainButton>
+    <BannerButton sx={{ bgcolor: bgColor, color: color, ...sx }} {...props}>
+      {text}
+    </BannerButton>
   );
 };
 
