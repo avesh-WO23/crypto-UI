@@ -27,7 +27,13 @@ const WalletIconSpan = styled("span")({
   height: "30px",
 });
 
-const BalanceBanner = ({ bgColor, color, isResultPage = false }) => {
+const BalanceBanner = ({
+  bgColor,
+  color,
+  isResultPage = false,
+  buttonText,
+  generateReport,
+}) => {
   return (
     <Container
       sx={{
@@ -41,15 +47,16 @@ const BalanceBanner = ({ bgColor, color, isResultPage = false }) => {
     >
       <div className={styles.walletHeading}>
         <div className={styles.walletIcon}>
-          {isResultPage && <Checkbox sx={{ padding: "0 16px 0 0" }} />}
+          {isResultPage && (
+            <Checkbox
+              sx={{ padding: "0 16px 0 0" }}
+              onChange={generateReport}
+            />
+          )}
           <WalletIconSpan />
           <WalletText variant="h2">WvzFY5rVKogxzRbWv</WalletText>
         </div>
-        <SeverityButton
-          text="Medium"
-          bgColor={bgColor}
-          color={`${color ? color : "#000"}`}
-        />
+        <SeverityButton text={buttonText} bgColor={bgColor} color={color} />
       </div>
       <div className={styles.mainBalanceBox}>
         <div
