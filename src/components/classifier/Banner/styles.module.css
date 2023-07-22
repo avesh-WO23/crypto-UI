@@ -7,6 +7,15 @@
   display: flex;
   width: 100%;
 }
+.walletHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.walletIcon {
+  display: flex;
+  align-items: center;
+}
 .totalBalance {
   width: 25%;
   border-right: 1px solid #adb9bf;
@@ -22,5 +31,4 @@
 .remainingBalance {
   display: flex;
   align-items: center;
-  gap: 20px;
 }

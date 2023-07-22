@@ -4,11 +4,13 @@ import { Container } from "../../common/Container";
 import SeverityButton from "../../common/buttons/SeverityButton";
 import { SectionHeading } from "../../common/styled/SectionHeading";
 import styles from "./styles.module.css";
+import WalletIcon from "../../../assets/svg/wallet.svg";
 
 const HeadingStyle = {
   fontWeight: 700,
   fontSize: "12px",
   color: "#5E6974",
+  width: "100px",
 };
 
 const WalletText = styled(Typography)({
@@ -16,21 +18,26 @@ const WalletText = styled(Typography)({
   fontWeight: 700,
 });
 
+const WalletIconSpan = styled("span")({
+  backgroundImage: `url(${WalletIcon})`,
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "left bottom 2px",
+  width: "30px",
+  height: "30px",
+});
+
 const BalanceBanner = () => {
   return (
     <Container
       sx={{ backgroundImage: "linear-gradient(45deg, white 40% , #FF891A30);" }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <WalletText variant="h2">WvzFY5rVKogxzRbWv</WalletText>
+      <div className={styles.walletHeading}>
+        <div className={styles.walletIcon}>
+          <WalletIconSpan />
+          <WalletText variant="h2">WvzFY5rVKogxzRbWv</WalletText>
+        </div>
         <SeverityButton text="Medium" bgColor="#FF891A" color="#000" />
-      </Box>
+      </div>
       <div className={styles.mainBalanceBox}>
         <div className={styles.totalBalance}>
           <SectionHeading variant="h4" sx={HeadingStyle}>
