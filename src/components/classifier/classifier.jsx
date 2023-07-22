@@ -8,7 +8,7 @@ import { Divider } from "@mui/material";
 const Classifier = () => {
   return (
     <>
-      <BalanceBanner />
+      <BalanceBanner bgColor="#FF891A" />
       <Location />
       <Divider />
       <Categories />
