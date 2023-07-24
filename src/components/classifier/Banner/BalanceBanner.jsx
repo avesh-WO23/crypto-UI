@@ -28,21 +28,35 @@ const WalletIconSpan = styled("span")({
 });
 
 const BalanceBanner = ({
-  bgColor,
-  color,
+  balance,
   isResultPage = false,
+  bgColor,
   buttonText,
-  generateReport,
+  color,
+  handleSelectedBalance,
+  selectedBalance,
 }) => {
   return (
     <Container
       sx={{
-        backgroundImage: `linear-gradient(45deg, white 40% , ${bgColor}30);`,
+        backgroundImage: !selectedBalance?.includes(balance?.id)
+          ? `linear-gradient(45deg, white 40% , ${
+              balance?.bgColor ? balance.bgColor : bgColor
+            }30);`
+          : "none",
         padding: "16px 16px",
-        border: isResultPage ? `1px solid ${bgColor}30` : "none",
+        border:
+          isResultPage && !selectedBalance?.includes(balance?.id)
+            ? `1px solid ${balance?.bgColor && balance.bgColor}30`
+            : isResultPage && selectedBalance?.includes(balance?.id)
+            ? `1px solid #0064CC`
+            : "none",
         position: isResultPage ? "relative" : "static",
         boxShadow: isResultPage ? "0 4px 12px #00000012" : "",
         borderRadius: isResultPage ? "8px" : "",
+        backgroundColor: selectedBalance?.includes(balance?.id)
+          ? "#E8F2FF"
+          : "none",
       }}
     >
       <div className={styles.walletHeading}>
@@ -50,13 +64,18 @@ const BalanceBanner = ({
           {isResultPage && (
             <Checkbox
               sx={{ padding: "0 16px 0 0" }}
-              onChange={generateReport}
+              checked={selectedBalance?.includes(balance?.id)}
+              onChange={handleSelectedBalance}
             />
           )}
           <WalletIconSpan />
           <WalletText variant="h2">WvzFY5rVKogxzRbWv</WalletText>
         </div>
-        <SeverityButton text={buttonText} bgColor={bgColor} color={color} />
+        <SeverityButton
+          text={balance?.buttonText ? balance.buttonText : buttonText}
+          bgColor={balance?.bgColor ? balance.bgColor : bgColor}
+          color={balance?.color ? balance.color : color}
+        />
       </div>
       <div className={styles.mainBalanceBox}>
         <div
@@ -72,7 +91,7 @@ const BalanceBanner = ({
             fontWeight={700}
             paddingTop={"10px"}
           >
-            802 $
+            {balance?.balanceValue ? balance.balanceValue : "802$"}
           </Typography>
         </div>
         {!isResultPage ? (
