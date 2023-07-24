@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container } from "../common/Container";
 import BalanceBanner from "../classifier/banner/BalanceBanner";
 import ReportPopper from "../results/ReportPopper";
+import FilterDrawer from "./FilterDrawer";
 
 const DummyResults = [
   {
@@ -69,7 +70,6 @@ const SearchedResults = () => {
               balance={balance}
               handleSelectedBalance={() => handleSelectedBalance(balance?.id)}
               selectedBalance={selectedBalance}
-              setSelectedBalance={setSelectedBalance}
               isResultPage
             />
           ))}
@@ -82,6 +82,7 @@ const SearchedResults = () => {
         ) : (
           <></>
         )}
+        <FilterDrawer />
       </Container>
     </>
   );
