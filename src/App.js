@@ -1,9 +1,11 @@
 import { ThemeProvider } from "@mui/material";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import Classifier from "./pages/Classifier";
 import Results from "./pages/Results";
 import { theme } from "./theme";
+import Layout from "./components/layout/Layout";
+// import Routes from "./Routes/routes";
 
 function App() {
   return (
@@ -11,8 +13,10 @@ function App() {
       <ThemeProvider theme={theme}>
         <div className="App">
           <Routes>
-            <Route path="/" element={<Classifier />} />
-            <Route path="/results" element={<Results />} />
+            <Route path="/" element={<Layout />}>
+              <Route path="/" element={<Classifier />} />
+              <Route path="/results" element={<Results />} />
+            </Route>
           </Routes>
         </div>
       </ThemeProvider>
