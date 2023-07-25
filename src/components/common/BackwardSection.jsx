@@ -5,6 +5,7 @@ import { Button, styled, Box } from "@mui/material";
 import HelpIcon from "../../assets/svg/help.svg";
 import SortIcon from "../../assets/svg/Sort.svg";
 import FilterIcon from "../../assets/svg/Filter.svg";
+import OutlineButton from "./buttons/OutlineButton";
 
 const HelpButton = styled(Button)({
   backgroundImage: `url(${HelpIcon})`,
@@ -25,17 +26,6 @@ const ButtonBox = styled(Box)({
   gap: "18px",
 });
 
-const OutlineButton = styled("button")({
-  border: "1px solid #0064CC",
-  borderRadius: "8px",
-  padding: "8px 16px",
-  backgroundColor: "transparent",
-  color: "#0064CC",
-  fontSize: "14px",
-  fontStyle: "normal",
-  fontWeight: 600,
-  cursor: "pointer",
-});
 const SortIconSpan = styled("span")({
   backgroundImage: `url(${SortIcon})`,
   backgroundRepeat: "no-repeat",
@@ -45,6 +35,7 @@ const SortIconSpan = styled("span")({
   backgroundPosition: "left center",
   padding: "8px 14px",
 });
+
 const FilterIconSpan = styled("span")({
   backgroundImage: `url(${FilterIcon})`,
   backgroundRepeat: "no-repeat",
