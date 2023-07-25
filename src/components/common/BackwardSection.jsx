@@ -3,7 +3,7 @@ import { Box, Button, styled } from "@mui/material";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { content } from "../../static/backwardSection";
-import { filterActions } from "../../store/FilterDrawer/FilterDrawerSlice";
+import { filterActions } from "../../store/filter-drawer/FilterDrawerSlice";
 import { Container } from "../common/Container";
 import OutlineButton from "./buttons/OutlineButton";
 

@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterActions } from "../../store/FilterDrawer/FilterDrawerSlice";
+import { filterActions } from "../../store/filter-drawer/FilterDrawerSlice";
 import FilterForm from "./FilterForm";
 
 export default function FilterDrawer() {
