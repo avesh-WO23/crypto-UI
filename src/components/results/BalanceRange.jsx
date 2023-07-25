@@ -1,9 +1,4 @@
-import {
-  InputAdornment,
-  OutlinedInput,
-  Typography,
-  styled,
-} from "@mui/material";
+import { InputAdornment, OutlinedInput, styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import * as React from "react";
