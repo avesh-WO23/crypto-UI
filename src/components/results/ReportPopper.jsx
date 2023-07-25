@@ -12,7 +12,7 @@ const PopperContainer = styled("div")({
 const PopperBox = styled(Box)({
   display: "flex",
   alignItems: "center",
-  padding: "8px 16px 8px 8px",
+  padding: "12px 16px 12px 8px;",
   boxShadow:
     "0px 6px 40px -4px rgba(145, 158, 171, 0.72), 0px 0px 2px 0px rgba(145, 158, 171, 0.16)",
   borderRadius: "8px",

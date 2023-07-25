@@ -1,19 +1,17 @@
-import React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Box, Button, styled } from "@mui/material";
+import React from "react";
+import { content } from "../../static/backwardSection";
 import { Container } from "../common/Container";
-import { Button, styled, Box } from "@mui/material";
-import HelpIcon from "../../assets/svg/help.svg";
-import SortIcon from "../../assets/svg/Sort.svg";
-import FilterIcon from "../../assets/svg/Filter.svg";
 import OutlineButton from "./buttons/OutlineButton";
 
-const HelpButton = styled(Button)({
-  backgroundImage: `url(${HelpIcon})`,
+const HelpButton = styled(Button)(({ path }) => ({
+  backgroundImage: `url(${path})`,
   backgroundRepeat: "no-repeat",
   height: "24px",
   width: "24px",
   minWidth: "24px",
-});
+}));
 
 const BackButton = styled(Button)({
   display: "contents",
@@ -26,29 +24,20 @@ const ButtonBox = styled(Box)({
   gap: "18px",
 });
 
-const SortIconSpan = styled("span")({
-  backgroundImage: `url(${SortIcon})`,
+const IconSpan = styled("span")(({ path }) => ({
+  backgroundImage: `url(${path})`,
   backgroundRepeat: "no-repeat",
   width: "24px",
   height: "24px",
   backgroundSize: "24px",
   backgroundPosition: "left center",
   padding: "8px 14px",
-});
-
-const FilterIconSpan = styled("span")({
-  backgroundImage: `url(${FilterIcon})`,
-  backgroundRepeat: "no-repeat",
-  width: "24px",
-  height: "24px",
-  backgroundSize: "24px",
-  backgroundPosition: "left center",
-  padding: "8px 14px",
-});
+}));
 
 const Filters = styled(Box)({ display: "flex", gap: "8px" });
 
 const BackwardSection = () => {
+  const { filterButtons, helpButton } = content;
   return (
     <Container
       sx={{
@@ -63,16 +52,14 @@ const BackwardSection = () => {
       </BackButton>
       <ButtonBox>
         <Filters>
-          <OutlineButton>
-            <SortIconSpan />
-            Sort
-          </OutlineButton>
-          <OutlineButton>
-            <FilterIconSpan />
-            Filter
-          </OutlineButton>
+          {filterButtons.map((btn, i) => (
+            <OutlineButton key={`${btn.text}-${i}`}>
+              <IconSpan path={btn.icon} />
+              {btn.text}
+            </OutlineButton>
+          ))}
         </Filters>
-        <HelpButton />
+        <HelpButton path={helpButton} />
       </ButtonBox>
     </Container>
   );
