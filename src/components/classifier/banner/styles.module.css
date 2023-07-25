@@ -1,0 +1,39 @@
+.mainBalanceBox {
+  display: flex;
+  gap: 20px;
+  padding-top: 20px;
+}
+.balanceBox {
+  display: flex;
+  width: 100%;
+}
+.walletHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.walletIcon {
+  display: flex;
+  align-items: center;
+}
+.totalBalance {
+  width: 25%;
+  padding: 6px 0;
+}
+.totalRemains {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px 0;
+}
+.remainingBalance {
+  display: flex;
+  align-items: center;
+}
+.arrowIcon {
+  position: absolute;
+  bottom: 24px;
+  right: 16px;
+  color: #0064cc;
+}

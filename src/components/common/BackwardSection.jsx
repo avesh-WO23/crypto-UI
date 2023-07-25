@@ -1,7 +1,9 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Box, Button, styled } from "@mui/material";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { content } from "../../static/backwardSection";
+import { filterActions } from "../../store/FilterDrawer/FilterDrawerSlice";
 import { Container } from "../common/Container";
 import OutlineButton from "./buttons/OutlineButton";
 
@@ -38,6 +40,8 @@ const Filters = styled(Box)({ display: "flex", gap: "8px" });
 
 const BackwardSection = () => {
   const { filterButtons, helpButton } = content;
+  const dispatch = useDispatch();
+  const { toggleDrawer } = filterActions;
   return (
     <Container
       sx={{
@@ -53,7 +57,10 @@ const BackwardSection = () => {
       <ButtonBox>
         <Filters>
           {filterButtons.map((btn, i) => (
-            <OutlineButton key={`${btn.text}-${i}`}>
+            <OutlineButton
+              key={`${btn.text}-${i}`}
+              onClick={() => dispatch(toggleDrawer(true))}
+            >
               <IconSpan path={btn.icon} />
               {btn.text}
             </OutlineButton>
