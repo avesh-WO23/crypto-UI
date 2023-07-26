@@ -12,16 +12,12 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "apexcharts": "^3.41.0",
-    "chart.js": "^4.3.0",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
-    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
-    "recharts": "^2.7.2",
-    "victory": "^36.6.11",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
@@ -32,18 +28,48 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.4.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.0.3",
     "prettier": "^2.5.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test"
+    }
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:prettier": "prettier -c \"src/**/*.{css,scss,json,html}\" --end-of-line auto",
+    "lint:prettier:fix": "prettier -c --write \"src/**/*.{css,scss,json,html}\" --end-of-line auto",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --fix",
+    "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ]
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,css,md,json}": [
+      "npm run prettier"
+    ],
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "npm run lint:fix",
+      "npm run lint",
+      "npm run prettier",
+      "git add"
+    ],
+    "src/**/*.{css,scss,json,html}": [
+      "npm run lint:prettier:fix",
+      "npm run lint:prettier",
+      "git add"
     ]
   },
   "browserslist": {

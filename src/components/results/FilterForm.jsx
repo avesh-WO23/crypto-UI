@@ -1,17 +1,19 @@
-import React from "react";
-import BalanceRange from "./BalanceRange";
-import { Box, Typography, styled } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import { Container } from "../common/Container";
+import React from 'react';
+
+import CloseIcon from '@mui/icons-material/Close';
+import { Box, Typography, styled } from '@mui/material';
+
+import { Container } from '../common/Container';
+import BalanceRange from './BalanceRange';
 
 const HeadingBox = styled(Box)({
-  display: "flex",
-  justifyContent: "space-between",
+  display: 'flex',
+  justifyContent: 'space-between',
 });
 
 const FilterForm = () => {
   return (
-    <Container sx={{ padding: "24px" }}>
+    <Container sx={{ padding: '24px' }}>
       <HeadingBox>
         <Typography fontWeight={600}>Filters</Typography>
         <CloseIcon />

@@ -1,8 +1,9 @@
-import { ThemeProvider } from "@mui/material";
-import { BrowserRouter as Router } from "react-router-dom";
-import "./App.css";
-import Routes from "./routes/routes";
-import { theme } from "./theme";
+import { ThemeProvider } from '@mui/material';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import './App.css';
+import Routes from './routes/routes';
+import { theme } from './theme';
 
 function App() {
   return (

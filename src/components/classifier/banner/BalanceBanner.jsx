@@ -1,30 +1,33 @@
-import { Checkbox, Typography, styled } from "@mui/material";
-import React from "react";
-import WalletIcon from "../../../assets/svg/wallet.svg";
-import { Container } from "../../common/Container";
-import SeverityLabel from "../../common/buttons/SeverityLabel";
-import { SectionHeading } from "../../common/styled/SectionHeading";
-import styles from "./styles.module.css";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import React from 'react';
+
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { Checkbox, Typography, styled } from '@mui/material';
+import { PropTypes } from 'prop-types';
+
+import WalletIcon from '../../../assets/svg/wallet.svg';
+import SeverityLabel from '../../common/buttons/SeverityLabel';
+import { Container } from '../../common/Container';
+import { SectionHeading } from '../../common/styled/SectionHeading';
+import styles from './styles.module.css';
 
 const HeadingStyle = {
   fontWeight: 700,
-  fontSize: "12px",
-  color: "#5E6974",
-  width: "100px",
+  fontSize: '12px',
+  color: '#5E6974',
+  width: '100px',
 };
 
 const WalletText = styled(Typography)({
-  fontSize: "14px",
+  fontSize: '14px',
   fontWeight: 700,
 });
 
-const WalletIconSpan = styled("span")({
+const WalletIconSpan = styled('span')({
   backgroundImage: `url(${WalletIcon})`,
-  backgroundRepeat: "no-repeat",
-  backgroundPosition: "left bottom 2px",
-  width: "30px",
-  height: "30px",
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'left bottom 2px',
+  width: '30px',
+  height: '30px',
 });
 
 const BalanceBanner = ({
@@ -44,31 +47,31 @@ const BalanceBanner = ({
             ? `linear-gradient(45deg, white 40% , ${
                 balance?.bgColor ? balance.bgColor : bgColor
               }30);`
-            : "none",
-          padding: "16px 16px",
+            : 'none',
+          padding: '16px 16px',
           border:
             isResultPage && !selectedBalance?.includes(balance?.id)
               ? `1px solid ${balance?.borderColor}`
               : isResultPage && selectedBalance?.includes(balance?.id)
-              ? `1px solid #0064CC`
-              : "none",
-          position: isResultPage ? "relative" : "static",
-          boxShadow: isResultPage ? "0 4px 12px #00000012" : "",
-          borderRadius: isResultPage ? "8px" : "",
+              ? '1px solid #0064CC'
+              : 'none',
+          position: isResultPage ? 'relative' : 'static',
+          boxShadow: isResultPage ? '0 4px 12px #00000012' : '',
+          borderRadius: isResultPage ? '8px' : '',
           backgroundColor: selectedBalance?.includes(balance?.id)
-            ? "#E8F2FF"
-            : "none",
+            ? '#E8F2FF'
+            : 'none',
         }}
       >
-        <div style={{ display: "flex", alignItems: "flex-start" }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start' }}>
           {isResultPage && (
             <Checkbox
-              sx={{ padding: "0 16px 0 0" }}
+              sx={{ padding: '0 16px 0 0' }}
               checked={selectedBalance?.includes(balance?.id)}
               onChange={handleSelectedBalance}
             />
           )}
-          <div style={{ width: "100%" }}>
+          <div style={{ width: '100%' }}>
             <div className={styles.walletHeading}>
               <div className={styles.walletIcon}>
                 <WalletIconSpan />
@@ -84,7 +87,7 @@ const BalanceBanner = ({
               <div
                 className={styles.totalBalance}
                 style={{
-                  borderRight: !isResultPage ? "1px solid #adb9bf" : "none",
+                  borderRight: !isResultPage ? '1px solid #adb9bf' : 'none',
                 }}
               >
                 <SectionHeading variant="h4" sx={HeadingStyle}>
@@ -94,9 +97,9 @@ const BalanceBanner = ({
                   variant="h1"
                   fontSize={28}
                   fontWeight={700}
-                  paddingTop={"10px"}
+                  paddingTop={'10px'}
                 >
-                  {balance?.balanceValue ? balance.balanceValue : "802$"}
+                  {balance?.balanceValue ? balance.balanceValue : '802$'}
                 </Typography>
               </div>
               {!isResultPage ? (
@@ -105,7 +108,7 @@ const BalanceBanner = ({
                     <SectionHeading variant="h4" sx={HeadingStyle}>
                       Total Spent
                     </SectionHeading>
-                    <Typography variant="p" fontSize={"12px"} fontWeight={600}>
+                    <Typography variant="p" fontSize={'12px'} fontWeight={600}>
                       600 $
                     </Typography>
                   </div>
@@ -113,7 +116,7 @@ const BalanceBanner = ({
                     <SectionHeading variant="h4" sx={HeadingStyle}>
                       Total Received
                     </SectionHeading>
-                    <Typography variant="p" fontSize={"12px"} fontWeight={600}>
+                    <Typography variant="p" fontSize={'12px'} fontWeight={600}>
                       1050 $
                     </Typography>
                   </div>
@@ -131,4 +134,13 @@ const BalanceBanner = ({
   );
 };
 
+BalanceBanner.propTypes = {
+  balance: PropTypes.object,
+  isResultPage: PropTypes.bool,
+  bgColor: PropTypes.string,
+  buttonText: PropTypes.string,
+  color: PropTypes.string,
+  handleSelectedBalance: PropTypes.func,
+  selectedBalance: PropTypes.array,
+};
 export default BalanceBanner;

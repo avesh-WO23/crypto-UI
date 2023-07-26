@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const filterSlice = createSlice({
-  name: "filters",
+  name: 'filters',
   initialState: false,
   reducers: {
     toggleDrawer(state) {

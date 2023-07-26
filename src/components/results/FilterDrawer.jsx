@@ -1,9 +1,11 @@
-import Box from "@mui/material/Box";
-import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { filterActions } from "../../store/filter-drawer/filterDrawerSlice";
-import FilterForm from "./FilterForm";
+import * as React from 'react';
+
+import Box from '@mui/material/Box';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { filterActions } from '../../store/filter-drawer/filterSlice';
+import FilterForm from './FilterForm';
 
 export default function FilterDrawer() {
   const dispatch = useDispatch();
@@ -14,8 +16,8 @@ export default function FilterDrawer() {
   const toggleDrawer = () => (event) => {
     if (
       event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
     ) {
       return;
     }
@@ -49,7 +51,7 @@ export default function FilterDrawer() {
     <div>
       <React.Fragment>
         <SwipeableDrawer
-          anchor={"bottom"}
+          anchor={'bottom'}
           open={open}
           onClose={toggleDrawer()}
           onOpen={toggleDrawer()}

@@ -1,13 +1,14 @@
-import React from "react";
-import { Button, styled } from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import React from 'react';
+
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Button, styled } from '@mui/material';
 
 const BackBtn = styled(Button)({
-  width: "fit-content",
-  display: "flex",
-  justifyContent: "flex-start",
+  width: 'fit-content',
+  display: 'flex',
+  justifyContent: 'flex-start',
   padding: 0,
-  color: "#121E28",
+  color: '#121E28',
 });
 
 const BackButton = () => {

@@ -1,8 +1,10 @@
-import React from "react";
-import { useRoutes } from "react-router-dom";
-import Layout from "../components/layout/Layout";
-import Classifier from "../pages/Classifier";
-import Results from "../pages/Results";
+import React from 'react';
+
+import { useRoutes } from 'react-router-dom';
+
+import Layout from '../components/layout/Layout';
+import Classifier from '../pages/Classifier';
+import Results from '../pages/Results';
 
 const Routes = () => {
   const element = useRoutes([
@@ -10,11 +12,11 @@ const Routes = () => {
       element: <Layout />,
       children: [
         {
-          path: "/",
+          path: '/',
           element: <Classifier />,
         },
         {
-          path: "/results",
+          path: '/results',
           element: <Results />,
         },
       ],
