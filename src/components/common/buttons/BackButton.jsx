@@ -3,7 +3,10 @@ import { Button, styled } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const BackBtn = styled(Button)({
-  display: "contents",
+  width: "fit-content",
+  display: "flex",
+  justifyContent: "flex-start",
+  padding: 0,
   color: "#121E28",
 });
 

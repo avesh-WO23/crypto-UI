@@ -1,4 +1,4 @@
-import { Box, Chip, styled } from "@mui/material";
+import { Box, styled } from "@mui/material";
 import React from "react";
 import { Container } from "../../common/Container";
 import { SectionHeading } from "../../common/styled/SectionHeading";
@@ -12,10 +12,12 @@ const CategoriesList = styled(Box)({
   fontWeight: 700,
 });
 
-const CategoryChip = styled(Chip)({
+const CategoryChip = styled("label")({
   backgroundColor: "#F1F4F6",
   fontSize: "14px",
   fontWeight: "bold",
+  padding: "4px 8px",
+  borderRadius: "8px",
 });
 
 const Categories = () => {
@@ -24,7 +26,9 @@ const Categories = () => {
       <SectionHeading>Categories</SectionHeading>
       <CategoriesList>
         {CategoryLists.map((category, ind) => {
-          return <CategoryChip key={`${category}-${ind}`} label={category} />;
+          return (
+            <CategoryChip key={`${category}-${ind}`}>{category}</CategoryChip>
+          );
         })}
       </CategoriesList>
     </Container>

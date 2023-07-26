@@ -10,6 +10,14 @@ const MenuButton = styled(Button)({
   textTransform: "capitalize",
   fontWeight: 600,
   fontSize: "16px",
+  borderRadius: "8px",
+  fontSize: "16px",
+  "&.MuiButton-contained.MuiButton-containedPrimary": {
+    "&:hover": {
+      backgroundColor: "#E8F2FF",
+      color: "#0064CC",
+    },
+  },
 });
 
 const StyledMenu = styled((props) => (
@@ -27,7 +35,7 @@ const StyledMenu = styled((props) => (
   />
 ))(({ theme }) => ({
   "& .MuiPaper-root": {
-    borderRadius: 6,
+    borderRadius: 8,
     marginTop: theme.spacing(1),
     minWidth: 180,
     color:
@@ -79,11 +87,9 @@ export default function LocationMenu({ country, setCountry, StaticMenu }) {
         disableElevation
         onClick={handleClick}
         sx={{
-          backgroundColor: anchorEl ? "#E8F2FF" : "transparent",
-          color: "#000",
-          // "& :hover": {
-          //   backgroundColor: "rgb(55, 65, 81)",
-          // },
+          backgroundColor:
+            country === "All locations" ? "transparent" : "#E8F2FF",
+          color: country === "All locations" ? "#000" : "#0064CC",
         }}
         endIcon={anchorEl ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
       >
@@ -100,7 +106,6 @@ export default function LocationMenu({ country, setCountry, StaticMenu }) {
         PaperProps={{
           style: {
             maxHeight: ITEM_HEIGHT * 4.5,
-            // width: "20ch",
           },
         }}
       >

@@ -9,7 +9,11 @@ import ReportButton from "../components/common/buttons/ReportButton";
 
 const Classifier = () => {
   return (
-    <>
+    <div
+      style={{
+        paddingBottom: "90px",
+      }}
+    >
       <Container
         sx={{
           backgroundColor: "#F1F4F6",
@@ -24,8 +28,8 @@ const Classifier = () => {
       <Location />
       <Divider />
       <Categories />
-      <ReportButton />
-    </>
+      <ReportButton sx={{ position: "fixed", bottom: "48px", right: "16px" }} />
+    </div>
   );
 };
 

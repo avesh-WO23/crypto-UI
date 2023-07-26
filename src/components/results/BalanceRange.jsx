@@ -18,7 +18,6 @@ export default function BalanceRange() {
   const [value, setValue] = React.useState([20, 37]);
 
   const handleChange = (event, newValue) => {
-    console.log("newValue", newValue);
     setValue(newValue);
   };
 

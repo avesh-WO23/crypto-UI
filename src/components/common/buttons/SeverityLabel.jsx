@@ -1,5 +1,5 @@
+import { styled } from "@mui/material";
 import React from "react";
-import { Button, styled } from "@mui/material";
 
 const SeverityText = styled("label")({
   borderRadius: "8px",
