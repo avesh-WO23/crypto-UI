@@ -6,7 +6,7 @@ import BackButton from "../components/common/buttons/BackButton";
 import OutlineButton from "../components/common/buttons/OutlineButton";
 import SearchedResults from "../components/results/SearchedResults";
 import { content } from "../static/backwardSection";
-import { filterActions } from "../store/filter-drawer/FilterDrawerSlice";
+import { filterActions } from "../store/filter-drawer/filterDrawerSlice";
 
 const HelpButton = styled(Button)(({ path }) => ({
   backgroundImage: `url(${path})`,
