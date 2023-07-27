@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Box, styled } from '@mui/material';
+import { Box, Typography, styled } from '@mui/material';
 
-import { Container } from '../../common/Container';
-import { SectionHeading } from '../../common/styled/SectionHeading';
+import { Container } from 'components/common/Container';
+import { SectionHeading } from 'components/common/styled/SectionHeading';
 
 const CategoryLists = ['Terrorism', 'Exchange', 'Sanctions', 'Criminal'];
 
@@ -14,13 +14,13 @@ const CategoriesList = styled(Box)({
   fontWeight: 700,
 });
 
-const CategoryChip = styled('label')({
-  backgroundColor: '#F1F4F6',
-  fontSize: '14px',
-  fontWeight: 'bold',
+const chipSx = {
+  backgroundColor: (theme) => theme.palette.grey[200],
   padding: '4px 8px',
+  px: 1,
+  py: 0.5,
   borderRadius: '8px',
-});
+};
 
 const Categories = () => {
   return (
@@ -29,7 +29,13 @@ const Categories = () => {
       <CategoriesList>
         {CategoryLists.map((category, ind) => {
           return (
-            <CategoryChip key={`${category}-${ind}`}>{category}</CategoryChip>
+            <Typography
+              variant="subtitle"
+              sx={chipSx}
+              key={`${category}-${ind}`}
+            >
+              {category}
+            </Typography>
           );
         })}
       </CategoriesList>

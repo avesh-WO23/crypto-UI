@@ -1,30 +1,40 @@
 import React from 'react';
 
-import { Button, styled } from '@mui/material';
+import DescriptionIcon from '@mui/icons-material/Description';
+import Button from '@mui/material/Button';
 import { PropTypes } from 'prop-types';
 
-import ReportIcon from '../../../assets/svg/Report.svg';
-
-const GenerateButton = styled(Button)({
-  'padding': '10px 10px 10px 45px',
+const buttonSx = {
+  'px': 2.2,
+  'py': 1.2,
   'borderRadius': '50px',
   'color': '#fff',
-  'backgroundColor': '#0064CC',
-  'backgroundImage': `url(${ReportIcon})`,
-  'backgroundRepeat': 'no-repeat',
-  'backgroundPosition': 'left 15px center',
+  'backgroundColor': (theme) => theme.palette.primary.main,
   'fontSize': '12px',
   'textTransform': 'capitalize',
   'fontWeight': 600,
   'boxShadow': '0px 8px 24px 0px rgba(0, 100, 204, 0.32)',
   '&:hover': {
     color: '#fff',
-    backgroundColor: '#0064CC',
+    backgroundColor: (theme) => theme.palette.primary.main,
   },
-});
+};
 
 const ReportButton = ({ sx }) => {
-  return <GenerateButton sx={sx}>Generate report</GenerateButton>;
+  return (
+    <Button
+      variant="text"
+      sx={{
+        textTransform: 'capitalize',
+        fontWeight: 600,
+        ...buttonSx,
+        ...sx,
+      }}
+      startIcon={<DescriptionIcon />}
+    >
+      Generate Report
+    </Button>
+  );
 };
 
 ReportButton.propTypes = {

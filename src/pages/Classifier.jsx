@@ -2,12 +2,12 @@ import React from 'react';
 
 import Divider from '@mui/material/Divider';
 
-import BalanceBanner from '../components/classifier/banner/BalanceBanner';
-import Categories from '../components/classifier/categories/Categories';
-import Location from '../components/classifier/locations/Location';
-import BackButton from '../components/common/buttons/BackButton';
-import ReportButton from '../components/common/buttons/ReportButton';
-import { Container } from '../components/common/Container';
+import BalanceBanner from 'components/classifier/banner/BalanceBanner';
+import Categories from 'components/classifier/categories/Categories';
+import Location from 'components/classifier/locations/Location';
+import BackButton from 'components/common/buttons/BackButton';
+import ReportButton from 'components/common/buttons/ReportButton';
+import { Container } from 'components/common/Container';
 
 const Classifier = () => {
   return (
@@ -18,7 +18,7 @@ const Classifier = () => {
     >
       <Container
         sx={{
-          backgroundColor: '#F1F4F6',
+          backgroundColor: (theme) => theme.palette.grey[200],
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -26,7 +26,14 @@ const Classifier = () => {
       >
         <BackButton />
       </Container>
-      <BalanceBanner bgColor="#FF891A" color="#000" buttonText={'Medium'} />
+      <BalanceBanner
+        balance={{
+          id: 1,
+          status: 'Medium',
+          amount: 802,
+          currency: '$',
+        }}
+      />
       <Location />
       <Divider />
       <Categories />

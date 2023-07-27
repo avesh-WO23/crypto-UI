@@ -8,48 +8,37 @@ import FilterDrawer from './FilterDrawer';
 const DummyResults = [
   {
     id: 1,
-    balanceValue: '802$',
-    buttonText: 'Severe',
-    bgColor: '#EB1633',
-    color: '#fff',
-    borderColor: '#FAC5C5',
+    amount: 802,
+    currency: '$',
+    status: 'Severe',
   },
   {
     id: 2,
-    balanceValue: '217$',
-    buttonText: 'Medium',
-    bgColor: '#FF891A',
-    color: '#000',
-    borderColor: '#FFECB2',
+    amount: 217,
+    currency: '$',
+    status: 'Medium',
   },
   {
     id: 3,
-    balanceValue: '805$',
-    buttonText: 'Low',
-    bgColor: '#979797',
-    color: '#000',
-    borderColor: '#BDC3C8',
+    amount: 805,
+    currency: '$',
+    status: 'Low',
   },
   {
     id: 4,
-    balanceValue: '530$',
-    buttonText: 'High',
-    bgColor: '#EB1633',
-    color: '#fff',
-    borderColor: '#FAC5C5',
+    amount: 530,
+    currency: '$',
+    status: 'High',
   },
   {
     id: 5,
-    balanceValue: '602$',
-    buttonText: 'Low',
-    bgColor: '#979797',
-    color: '#000',
-    borderColor: '#BDC3C8',
+    amount: 602,
+    currency: '$',
+    status: 'Low',
   },
 ];
 
 const SearchedResults = () => {
-  // const [balanceData, setBalanceData] = useState(DummyResults);
   const [selectedBalance, setSelectedBalance] = useState([]);
 
   const handleSelectedBalance = (id) => {
@@ -62,24 +51,16 @@ const SearchedResults = () => {
 
   return (
     <>
-      <Container sx={{ position: 'relative' }}>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '16px',
-          }}
-        >
-          {DummyResults.map((balance, ind) => (
-            <BalanceBanner
-              key={balance.id}
-              balance={balance}
-              handleSelectedBalance={() => handleSelectedBalance(balance?.id)}
-              selectedBalance={selectedBalance}
-              isResultPage
-            />
-          ))}
-        </div>
+      <Container sx={{ position: 'relative' }} gap={2}>
+        {DummyResults.map((balance) => (
+          <BalanceBanner
+            key={balance.id}
+            balance={balance}
+            handleSelectedBalance={() => handleSelectedBalance(balance?.id)}
+            selectedBalance={selectedBalance}
+            isResultPage
+          />
+        ))}
         {selectedBalance?.length ? (
           <ReportPopper
             selectedBalance={selectedBalance}

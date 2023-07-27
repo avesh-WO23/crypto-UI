@@ -1,22 +1,25 @@
-import { Typography, styled } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import { PropTypes } from 'prop-types';
-
-const Heading = styled(Typography)({
-  fontSize: '16px',
-  fontWeight: 600,
-  color: '#121E28',
-});
 
 export const SectionHeading = ({ children, variant, sx, ...props }) => {
   return (
-    <Heading sx={sx} variant={variant} {...props}>
+    <Typography
+      sx={{
+        fontSize: '16px',
+        fontWeight: 600,
+        color: (theme) => theme.palette.primary.dark,
+        ...sx,
+      }}
+      variant={variant}
+      {...props}
+    >
       {children}
-    </Heading>
+    </Typography>
   );
 };
 
 SectionHeading.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.string,
   variant: PropTypes.string,
   sx: PropTypes.object,
 };

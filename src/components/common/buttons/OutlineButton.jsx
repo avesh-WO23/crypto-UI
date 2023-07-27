@@ -1,32 +1,32 @@
 import React from 'react';
 
-import { styled } from '@mui/material';
+import Button from '@mui/material/Button';
 import { PropTypes } from 'prop-types';
 
-const OutlineBtn = styled('button')({
-  border: '1px solid #0064CC',
-  borderRadius: '8px',
-  padding: '8px 16px',
+const buttonSx = {
+  border: (theme) => `1px solid ${theme.palette.primary.main}`,
+  borderRadius: 2,
+  px: 2,
+  py: 1,
   backgroundColor: 'transparent',
-  color: '#0064CC',
-  fontSize: '14px',
+  color: (theme) => theme.palette.primary.main,
   fontStyle: 'normal',
   fontWeight: 600,
   cursor: 'pointer',
   textAlign: 'center',
-});
+};
 
-const OutlineButton = ({ children, style, ...props }) => {
+const OutlineButton = ({ children, sx, ...props }) => {
   return (
-    <OutlineBtn style={style} {...props}>
+    <Button sx={{ ...buttonSx, ...sx }} {...props}>
       {children}
-    </OutlineBtn>
+    </Button>
   );
 };
 
 OutlineButton.propTypes = {
-  children: PropTypes.element,
-  style: PropTypes.object,
+  children: PropTypes.node,
+  sx: PropTypes.object,
 };
 
 export default OutlineButton;

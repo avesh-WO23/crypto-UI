@@ -8,18 +8,18 @@ import MenuItem from '@mui/material/MenuItem';
 import { alpha, styled } from '@mui/material/styles';
 import { PropTypes } from 'prop-types';
 
-const MenuButton = styled(Button)({
+const MenuButton = styled(Button)(({ theme }) => ({
   'textTransform': 'capitalize',
   'fontWeight': 600,
   'fontSize': '16px',
   'borderRadius': '8px',
   '&.MuiButton-contained.MuiButton-containedPrimary': {
     '&:hover': {
-      backgroundColor: '#E8F2FF',
-      color: '#0064CC',
+      backgroundColor: theme.palette.secondary.light,
+      color: theme.palette.primary.main,
     },
   },
-});
+}));
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -39,12 +39,9 @@ const StyledMenu = styled((props) => (
     'borderRadius': 8,
     'marginTop': theme.spacing(1),
     'minWidth': 180,
-    'color':
-      theme.palette.mode === 'light'
-        ? 'rgb(55, 65, 81)'
-        : theme.palette.grey[300],
+    'color': '#374151',
     'boxShadow':
-      'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+      '0px 20px 40px -4px rgba(145, 158, 171, 0.24), 0px 0px 2px 0px rgba(145, 158, 171, 0.24)',
     '& .MuiMenu-list': {
       padding: '4px 0',
     },
@@ -60,6 +57,13 @@ const StyledMenu = styled((props) => (
           theme.palette.action.selectedOpacity
         ),
       },
+    },
+    '&::-webkit-scrollbar': {
+      width: '0.4em',
+    },
+    '&::-webkit-scrollbar-thumb': {
+      borderRadius: 8,
+      backgroundColor: theme.palette.grey[300],
     },
   },
 }));
@@ -88,9 +92,12 @@ export default function LocationMenu({ country, setCountry, StaticMenu }) {
         disableElevation
         onClick={handleClick}
         sx={{
-          backgroundColor:
-            country === 'All locations' ? 'transparent' : '#E8F2FF',
-          color: country === 'All locations' ? '#000' : '#0064CC',
+          backgroundColor: (theme) =>
+            country === 'All locations'
+              ? 'transparent'
+              : theme.palette.secondary.light,
+          color: (theme) =>
+            country === 'All locations' ? '#000' : theme.palette.primary.main,
         }}
         endIcon={anchorEl ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
       >

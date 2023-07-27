@@ -1,26 +1,25 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { Checkbox, Typography, styled } from '@mui/material';
+import {
+  Box,
+  Checkbox,
+  Divider,
+  Grid,
+  Stack,
+  Typography,
+  styled,
+} from '@mui/material';
 import { PropTypes } from 'prop-types';
 
-import WalletIcon from '../../../assets/svg/wallet.svg';
-import SeverityLabel from '../../common/buttons/SeverityLabel';
-import { Container } from '../../common/Container';
-import { SectionHeading } from '../../common/styled/SectionHeading';
-import styles from './styles.module.css';
+import WalletIcon from 'assets/svg/wallet.svg';
+import SeverityLabel from 'components/common/buttons/SeverityLabel';
+import { Container } from 'components/common/Container';
 
 const HeadingStyle = {
-  fontWeight: 700,
-  fontSize: '12px',
-  color: '#5E6974',
+  color: (theme) => theme.palette.grey[600],
   width: '100px',
 };
-
-const WalletText = styled(Typography)({
-  fontSize: '14px',
-  fontWeight: 700,
-});
 
 const WalletIconSpan = styled('span')({
   backgroundImage: `url(${WalletIcon})`,
@@ -30,116 +29,152 @@ const WalletIconSpan = styled('span')({
   height: '30px',
 });
 
+const settings = {
+  severe: {
+    bgColor: '#EB1633',
+    color: '#fff',
+    borderColor: '#FAC5C5',
+  },
+  medium: {
+    bgColor: '#FF891A',
+    color: '#000',
+    borderColor: '#FFECB2',
+  },
+  low: {
+    bgColor: '#979797',
+    color: '#000',
+    borderColor: '#BDC3C8',
+  },
+  high: {
+    bgColor: '#EB1633',
+    color: '#fff',
+    borderColor: '#FAC5C5',
+  },
+};
+
 const BalanceBanner = ({
   balance,
   isResultPage = false,
-  bgColor,
-  buttonText,
-  color,
   handleSelectedBalance,
   selectedBalance,
 }) => {
+  const { status, amount, id, currency } = balance;
+  const colorSetting = useMemo(() => settings[status.toLowerCase()], [status]);
+
   return (
-    <>
-      <Container
-        sx={{
-          backgroundImage: !selectedBalance?.includes(balance?.id)
-            ? `linear-gradient(45deg, white 40% , ${
-                balance?.bgColor ? balance.bgColor : bgColor
-              }30);`
+    <Container
+      sx={{
+        backgroundImage: !selectedBalance?.includes(id)
+          ? `linear-gradient(45deg, white 40% , ${colorSetting?.bgColor}30);`
+          : 'none',
+        padding: '16px 16px',
+        border: (theme) =>
+          isResultPage && !selectedBalance?.includes(id)
+            ? `1px solid ${colorSetting?.borderColor}`
+            : isResultPage && selectedBalance?.includes(id)
+            ? `1px solid ${theme.palette.primary.main}`
             : 'none',
-          padding: '16px 16px',
-          border:
-            isResultPage && !selectedBalance?.includes(balance?.id)
-              ? `1px solid ${balance?.borderColor}`
-              : isResultPage && selectedBalance?.includes(balance?.id)
-              ? '1px solid #0064CC'
-              : 'none',
-          position: isResultPage ? 'relative' : 'static',
-          boxShadow: isResultPage ? '0 4px 12px #00000012' : '',
-          borderRadius: isResultPage ? '8px' : '',
-          backgroundColor: selectedBalance?.includes(balance?.id)
-            ? '#E8F2FF'
+        position: isResultPage ? 'relative' : 'static',
+        boxShadow: isResultPage ? '0 4px 12px #00000012' : '',
+        borderRadius: isResultPage ? '8px' : '',
+        backgroundColor: (theme) =>
+          selectedBalance?.includes(id)
+            ? theme.palette.secondary.light
             : 'none',
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-          {isResultPage && (
-            <Checkbox
-              sx={{ padding: '0 16px 0 0' }}
-              checked={selectedBalance?.includes(balance?.id)}
-              onChange={handleSelectedBalance}
-            />
-          )}
-          <div style={{ width: '100%' }}>
-            <div className={styles.walletHeading}>
-              <div className={styles.walletIcon}>
-                <WalletIconSpan />
-                <WalletText variant="h2">WvzFY5rVKogxzRbWv</WalletText>
-              </div>
-              <SeverityLabel
-                text={balance?.buttonText ? balance.buttonText : buttonText}
-                bgColor={balance?.bgColor ? balance.bgColor : bgColor}
-                color={balance?.color ? balance.color : color}
-              />
-            </div>
-            <div className={styles.mainBalanceBox}>
-              <div
-                className={styles.totalBalance}
-                style={{
-                  borderRight: !isResultPage ? '1px solid #adb9bf' : 'none',
+      }}
+    >
+      {isResultPage && (
+        <Grid item xs={1.5}>
+          <Checkbox
+            sx={{ pl: 0, pt: '6px' }}
+            checked={selectedBalance?.includes(id)}
+            onChange={handleSelectedBalance}
+          />
+        </Grid>
+      )}
+      <Grid item xs={isResultPage ? 10.5 : 12}>
+        <Stack direction={'row'} justifyContent={'space-between'}>
+          <Stack direction={'row'} alignItems={'center'}>
+            <WalletIconSpan />
+            <Typography variant="display6">WvzFY5rVKogxzRbWv</Typography>
+          </Stack>
+          <SeverityLabel
+            text={status}
+            bgColor={colorSetting?.bgColor}
+            color={colorSetting?.color}
+          />
+        </Stack>
+        <Stack
+          direction="row"
+          divider={
+            !isResultPage ? <Divider orientation="vertical" flexItem /> : ''
+          }
+          spacing={2}
+          pt={2}
+          position={'relative'}
+        >
+          <Stack justifyContent={'center'}>
+            <Typography
+              variant="display7"
+              sx={{ color: (theme) => theme.palette.grey[600] }}
+            >
+              Total Balance
+            </Typography>
+            <Typography variant="h3" pt={1}>
+              {amount}
+              {currency}
+            </Typography>
+          </Stack>
+          <Stack>
+            {!isResultPage ? (
+              <Box display={'flex'} flexDirection={'column'} gap={2}>
+                <Stack direction={'row'} alignItems={'center'}>
+                  <Typography variant="display7" sx={HeadingStyle}>
+                    Total Spent
+                  </Typography>
+                  <Typography
+                    variant="display7"
+                    sx={{
+                      color: (theme) => theme.palette.primary.dark,
+                    }}
+                  >
+                    600 $
+                  </Typography>
+                </Stack>
+                <Stack direction={'row'} alignItems={'center'}>
+                  <Typography variant="display7" sx={HeadingStyle}>
+                    Total Received
+                  </Typography>
+                  <Typography
+                    variant="display7"
+                    sx={{
+                      color: (theme) => theme.palette.primary.dark,
+                    }}
+                  >
+                    1050 $
+                  </Typography>
+                </Stack>
+              </Box>
+            ) : (
+              <ArrowForwardIcon
+                sx={{
+                  position: 'absolute',
+                  bottom: '0',
+                  right: '0',
+                  color: (theme) => theme.palette.primary.main,
                 }}
-              >
-                <SectionHeading variant="h4" sx={HeadingStyle}>
-                  Total Balance
-                </SectionHeading>
-                <Typography
-                  variant="h1"
-                  fontSize={28}
-                  fontWeight={700}
-                  paddingTop={'10px'}
-                >
-                  {balance?.balanceValue ? balance.balanceValue : '802$'}
-                </Typography>
-              </div>
-              {!isResultPage ? (
-                <div className={styles.totalRemains}>
-                  <div className={styles.remainingBalance}>
-                    <SectionHeading variant="h4" sx={HeadingStyle}>
-                      Total Spent
-                    </SectionHeading>
-                    <Typography variant="p" fontSize={'12px'} fontWeight={600}>
-                      600 $
-                    </Typography>
-                  </div>
-                  <div className={styles.remainingBalance}>
-                    <SectionHeading variant="h4" sx={HeadingStyle}>
-                      Total Received
-                    </SectionHeading>
-                    <Typography variant="p" fontSize={'12px'} fontWeight={600}>
-                      1050 $
-                    </Typography>
-                  </div>
-                </div>
-              ) : (
-                <span className={styles.arrowIcon}>
-                  <ArrowForwardIcon />
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
-      </Container>
-    </>
+              />
+            )}
+          </Stack>
+        </Stack>
+      </Grid>
+    </Container>
   );
 };
 
 BalanceBanner.propTypes = {
   balance: PropTypes.object,
   isResultPage: PropTypes.bool,
-  bgColor: PropTypes.string,
-  buttonText: PropTypes.string,
-  color: PropTypes.string,
   handleSelectedBalance: PropTypes.func,
   selectedBalance: PropTypes.array,
 };

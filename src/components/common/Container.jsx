@@ -1,19 +1,15 @@
-import { Box, styled } from '@mui/material';
+import Grid from '@mui/material/Grid';
 import { PropTypes } from 'prop-types';
-
-const MainContainer = styled(Box)({
-  padding: '24px 16px',
-});
 
 export const Container = ({ children, sx, ...props }) => {
   return (
-    <MainContainer sx={sx} {...props}>
+    <Grid sx={{ px: 2, py: 3, ...sx }} {...props} container>
       {children}
-    </MainContainer>
+    </Grid>
   );
 };
 
 Container.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.node,
   sx: PropTypes.object,
 };
