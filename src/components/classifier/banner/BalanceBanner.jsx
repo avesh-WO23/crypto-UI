@@ -67,14 +67,13 @@ const BalanceBanner = ({
         backgroundImage: !selectedBalance?.includes(id)
           ? `linear-gradient(45deg, white 40% , ${colorSetting?.bgColor}30);`
           : 'none',
-        padding: '16px 16px',
+        p: 2,
         border: (theme) =>
           isResultPage && !selectedBalance?.includes(id)
             ? `1px solid ${colorSetting?.borderColor}`
             : isResultPage && selectedBalance?.includes(id)
             ? `1px solid ${theme.palette.primary.main}`
             : 'none',
-        position: isResultPage ? 'relative' : 'static',
         boxShadow: isResultPage ? '0 4px 12px #00000012' : '',
         borderRadius: isResultPage ? '8px' : '',
         backgroundColor: (theme) =>

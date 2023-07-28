@@ -5,9 +5,8 @@ import Divider from '@mui/material/Divider';
 import BalanceBanner from 'components/classifier/banner/BalanceBanner';
 import Categories from 'components/classifier/categories/Categories';
 import Location from 'components/classifier/locations/Location';
-import BackButton from 'components/common/buttons/BackButton';
 import ReportButton from 'components/common/buttons/ReportButton';
-import { Container } from 'components/common/Container';
+import MobileHeader from 'components/header/MobileHeader';
 
 const Classifier = () => {
   return (
@@ -16,16 +15,7 @@ const Classifier = () => {
         paddingBottom: '90px',
       }}
     >
-      <Container
-        sx={{
-          backgroundColor: (theme) => theme.palette.grey[200],
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
-        <BackButton />
-      </Container>
+      <MobileHeader />
       <BalanceBanner
         balance={{
           id: 1,

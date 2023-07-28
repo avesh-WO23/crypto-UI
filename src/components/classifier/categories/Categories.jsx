@@ -1,32 +1,25 @@
 import React from 'react';
 
-import { Box, Typography, styled } from '@mui/material';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 import { Container } from 'components/common/Container';
 import { SectionHeading } from 'components/common/styled/SectionHeading';
 
 const CategoryLists = ['Terrorism', 'Exchange', 'Sanctions', 'Criminal'];
 
-const CategoriesList = styled(Box)({
-  paddingTop: '20px',
-  display: 'flex',
-  gap: '8px',
-  fontWeight: 700,
-});
-
 const chipSx = {
   backgroundColor: (theme) => theme.palette.grey[200],
-  padding: '4px 8px',
   px: 1,
   py: 0.5,
-  borderRadius: '8px',
+  borderRadius: 2,
 };
 
 const Categories = () => {
   return (
     <Container>
       <SectionHeading>Categories</SectionHeading>
-      <CategoriesList>
+      <Box display={'flex'} gap={1} pt={2}>
         {CategoryLists.map((category, ind) => {
           return (
             <Typography
@@ -38,7 +31,7 @@ const Categories = () => {
             </Typography>
           );
         })}
-      </CategoriesList>
+      </Box>
     </Container>
   );
 };

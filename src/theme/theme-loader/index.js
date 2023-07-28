@@ -1,9 +1,9 @@
 import { LIGHT } from 'theme/theme-loader/colors';
-import { themeTypography } from 'theme/theme-loader/typography';
+import * as typography from 'theme/theme-loader/typography';
 
 const theme = {
   palette: LIGHT,
-  typography: themeTypography,
+  typography: typography.themeTypography,
   status: {
     danger: '#e48d8d',
     success: '#97d69d',
@@ -11,17 +11,16 @@ const theme = {
   },
   components: {
     MuiButton: {
-      // defaultProps: {
-      //   disableRipple: true,
-      //   disableElevation: true,
-      // },
-      // styleOverrides: {
-      //   root: {
-      //     fontSize: pxToRem(20),
-      //     fontWeight: '400',
-      //     textTransform: 'none',
-      //   },
-      // },
+      defaultProps: {
+        disableRipple: true,
+        disableElevation: true,
+      },
+      styleOverrides: {
+        root: {
+          fontSize: typography.pxToRem(14),
+          fontWeight: '400',
+        },
+      },
     },
     MuiMenuItem: {
       // styleOverrides: {
