@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import BalanceBanner from '../classifier/banner/BalanceBanner';
 import { Container } from '../common/Container';
 import ReportPopper from '../results/ReportPopper';
-import FilterDrawer from './FilterDrawer';
+import FilterDrawer from './common/FilterDrawer';
 
 const DummyResults = [
   {

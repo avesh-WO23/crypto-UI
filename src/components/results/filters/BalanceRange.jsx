@@ -4,17 +4,14 @@ import { InputAdornment, OutlinedInput, styled } from '@mui/material';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 
-import { SectionHeading } from '../common/styled/SectionHeading';
+import { Container } from 'components/common/Container';
+import { SectionHeading } from 'components/common/styled/SectionHeading';
 
 const InputRange = styled(OutlinedInput)({
   '& .MuiOutlinedInput-input.MuiInputBase-inputAdornedStart': {
     padding: '8px',
   },
 });
-
-function valuetext(value) {
-  return `${value}°C`;
-}
 
 export default function BalanceRange() {
   const [value, setValue] = React.useState([20, 37]);
@@ -24,9 +21,9 @@ export default function BalanceRange() {
   };
 
   return (
-    <Box>
+    <Container sx={{ py: 0, px: 3 }}>
       <SectionHeading>Balance Range</SectionHeading>
-      <Box sx={{ display: 'flex', paddingTop: '24px', gap: '22px' }}>
+      <Box display={'flex'} pt={2} gap={3}>
         {value.map((val, i) => {
           return (
             <InputRange
@@ -45,8 +42,8 @@ export default function BalanceRange() {
         value={value}
         onChange={handleChange}
         valueLabelDisplay="auto"
-        getAriaValueText={valuetext}
+        sx={{ '&.MuiSlider-root': { pt: 5, pb: 4, px: 0 } }}
       />
-    </Box>
+    </Container>
   );
 }

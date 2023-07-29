@@ -56,7 +56,7 @@ const MobileHeader = ({ isFilters, isHelp }) => {
               key={`${btn.text}-${i}`}
               sx={filterSx}
               startIcon={<img src={btn.icon} alt="filter" />}
-              onClick={() => dispatch(toggleDrawer(true))}
+              onClick={() => dispatch(toggleDrawer(btn.text.toLowerCase()))}
             >
               {btn.text}
             </CustomButton>
