@@ -20,7 +20,7 @@ const CustomButton = ({
 
   return (
     <Button
-      sx={{ minHeight: 36.5, ...sx }}
+      sx={{ minHeight: 36.5, borderRadius: 2, ...sx }}
       variant={variant || 'outlined'}
       startIcon={isLoading ? '' : startIcon}
       endIcon={isLoading ? '' : endIcon}

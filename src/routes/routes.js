@@ -1,29 +1,41 @@
-import React from 'react';
+import React, { lazy } from 'react';
 
-import { useRoutes } from 'react-router-dom';
+import { Navigate, useRoutes } from 'react-router-dom';
 
-import Layout from '../components/layout/Layout';
-import Classifier from '../pages/Classifier';
-import Results from '../pages/Results';
+import useAuth, { AuthProvider, AuthRedirect } from 'context/AuthContext';
+
+const SignIn = lazy(() => import('pages/sign-in/SignIn'));
+const Results = lazy(() => import('pages/Results'));
+const Classifier = lazy(() => import('pages/Classifier'));
 
 const Routes = () => {
+  const { authenticated } = useAuth();
+  const defaultNavigate = <Navigate to={authenticated ? '/' : '/sign-in'} />;
   const element = useRoutes([
     {
-      element: <Layout />,
+      element: <AuthRedirect />,
       children: [
         {
-          path: '/',
+          index: true,
           element: <Classifier />,
         },
         {
           path: '/results',
           element: <Results />,
         },
+        {
+          path: '/sign-in',
+          element: <SignIn />,
+        },
+        {
+          path: '*',
+          element: defaultNavigate,
+        },
       ],
     },
   ]);
 
-  return element;
+  return <AuthProvider>{element}</AuthProvider>;
 };
 
 export default Routes;
