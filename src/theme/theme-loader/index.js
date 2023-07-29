@@ -12,13 +12,14 @@ const theme = {
   components: {
     MuiButton: {
       defaultProps: {
-        disableRipple: true,
-        disableElevation: true,
+        // disableRipple: true,
+        // disableElevation: true,
       },
       styleOverrides: {
         root: {
           fontSize: typography.pxToRem(14),
           fontWeight: '400',
+          textTransform: 'capitalize',
         },
       },
     },

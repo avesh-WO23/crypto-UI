@@ -82,7 +82,7 @@ export default function LocationMenu({ country, setCountry, StaticMenu }) {
   };
 
   return (
-    <div>
+    <>
       <MenuButton
         id="demo-customized-button"
         aria-controls={open ? 'demo-customized-menu' : undefined}
@@ -129,7 +129,7 @@ export default function LocationMenu({ country, setCountry, StaticMenu }) {
           );
         })}
       </StyledMenu>
-    </div>
+    </>
   );
 }
 

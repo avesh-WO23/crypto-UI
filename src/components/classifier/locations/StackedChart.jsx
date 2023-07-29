@@ -24,7 +24,7 @@ const StackedBarChart = ({ country, setCountry }) => {
             borderType: 'dotted',
             // color: "transparent",
             strokeWidth: 10,
-            offsetX: 12,
+            offsetX: 15,
             offsetY: 0,
           },
           axisTicks: {
@@ -117,7 +117,7 @@ const StackedBarChart = ({ country, setCountry }) => {
           },
         },
         title: {
-          text: country === 'All locations' ? '    ' : `All > ${country}`,
+          text: country === 'All locations' ? '' : `All > ${country}`,
           style: {
             fontSize: '14px',
             fontWeight: 600,
@@ -144,7 +144,7 @@ const StackedBarChart = ({ country, setCountry }) => {
           markers: {
             radius: 10,
             offsetX: -5,
-            offsetY: 0,
+            offsetY: 2,
           },
           itemMargin: {
             horizontal: 30,

@@ -2,11 +2,13 @@ import React from 'react';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
-import { Box, Button, Stack } from '@mui/material';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import { PropTypes } from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import CustomButton from 'components/common/buttons/CustomButton';
 import { content } from 'static/backwardSection';
 import { filterActions } from 'store/filter-drawer/filterSlice';
 
@@ -30,8 +32,6 @@ const headerSx = {
 };
 
 const filterSx = {
-  'textTransform': 'capitalize',
-  'border': (theme) => `1px solid ${theme.palette.primary.main}`,
   '& .MuiButton-startIcon': {
     mr: 0.5,
   },
@@ -52,15 +52,14 @@ const MobileHeader = ({ isFilters, isHelp }) => {
       <Box display={'flex'} alignItems={'center'} gap={1}>
         {isFilters &&
           filterButtons.map((btn, i) => (
-            <Button
+            <CustomButton
               key={`${btn.text}-${i}`}
               sx={filterSx}
               startIcon={<img src={btn.icon} alt="filter" />}
-              variant="outlined"
               onClick={() => dispatch(toggleDrawer(true))}
             >
               {btn.text}
-            </Button>
+            </CustomButton>
           ))}
         {isHelp && <HelpRoundedIcon sx={helpSx} />}
       </Box>
