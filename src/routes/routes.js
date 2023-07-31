@@ -6,7 +6,7 @@ import useAuth, { AuthProvider, AuthRedirect } from 'context/AuthContext';
 
 const SignIn = lazy(() => import('pages/sign-in/SignIn'));
 const Results = lazy(() => import('pages/Results'));
-const Classifier = lazy(() => import('pages/Classifier'));
+const Wallet = lazy(() => import('pages/Wallet'));
 
 const Routes = () => {
   const { authenticated } = useAuth();
@@ -17,7 +17,7 @@ const Routes = () => {
       children: [
         {
           index: true,
-          element: <Classifier />,
+          element: <Wallet />,
         },
         {
           path: '/results',
