@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Box, Divider } from '@mui/material';
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
 import { PropTypes } from 'prop-types';
 
 import CustomButton from 'components/common/buttons/CustomButton';
@@ -10,17 +11,12 @@ const CustomButtonSx = {
   borderRadius: 2,
 };
 
-const FormActions = ({
-  handleCancel,
-  handleSubmit,
-  cancelText,
-  submitText,
-}) => {
+const FormActions = ({ handleClear, handleSubmit, cancelText, submitText }) => {
   return (
     <Box position={'sticky'} bottom={0} bgcolor={'#fff'} zIndex={1}>
       <Divider />
       <Box display={'flex'} justifyContent={'center'} gap={1} p={2}>
-        <CustomButton sx={CustomButtonSx} fullWidth onClick={handleCancel}>
+        <CustomButton sx={CustomButtonSx} fullWidth onClick={handleClear}>
           {cancelText || 'Clear All'}
         </CustomButton>
         <CustomButton
@@ -37,7 +33,7 @@ const FormActions = ({
 };
 
 FormActions.propTypes = {
-  handleCancel: PropTypes.func,
+  handleClear: PropTypes.func,
   handleSubmit: PropTypes.func,
   cancelText: PropTypes.string,
   submitText: PropTypes.string,

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
-import { SectionHeading } from '../../common/styled/SectionHeading';
 import LocationMenu from './LocationMenu';
 import StackedBarChart from './StackedChart';
 
@@ -26,7 +26,7 @@ const Location = () => {
         alignItems={'center'}
         px={2}
       >
-        <SectionHeading variant="h2">Locations</SectionHeading>
+        <Typography variant="h6">Locations</Typography>
         <LocationMenu
           country={country}
           setCountry={setCountry}
