@@ -1,10 +1,7 @@
-import React from 'react';
-
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 import { Container } from 'components/common/Container';
-import { SectionHeading } from 'components/common/styled/SectionHeading';
 
 const CategoryLists = ['Terrorism', 'Exchange', 'Sanctions', 'Criminal'];
 
@@ -18,7 +15,7 @@ const chipSx = {
 const Categories = () => {
   return (
     <Container>
-      <SectionHeading>Categories</SectionHeading>
+      <Typography variant="h6">Categories</Typography>
       <Box display={'flex'} gap={1} pt={2}>
         {CategoryLists.map((category, ind) => {
           return (
