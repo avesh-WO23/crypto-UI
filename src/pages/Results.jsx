@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
+// import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
 import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
 import { useSearchParams } from 'react-router-dom';
@@ -19,14 +19,14 @@ const filterSx = {
   'borderRadius': 2.5,
 };
 
-const helpSx = {
-  background: (theme) => theme.palette.primary.light,
-  color: (theme) => theme.palette.primary.main,
-  padding: '2px',
-  width: '24px',
-  height: '24px',
-  borderRadius: '50%',
-};
+// const helpSx = {
+//   background: (theme) => theme.palette.primary.light,
+//   color: (theme) => theme.palette.primary.main,
+//   padding: '2px',
+//   width: '24px',
+//   height: '24px',
+//   borderRadius: '50%',
+// };
 
 const Results = () => {
   const { filterButtons } = content;
@@ -86,7 +86,7 @@ const Results = () => {
                 </CustomButton>
               </Badge>
             ))}
-            <HelpRoundedIcon sx={helpSx} />
+            {/* <HelpRoundedIcon sx={helpSx} /> */}
           </Box>
         }
       />

@@ -1,9 +1,11 @@
 import React from 'react';
 
+import { useTheme } from '@emotion/react';
 import { PropTypes } from 'prop-types';
 import ReactApexChart from 'react-apexcharts';
 
 const StackedBarChart = ({ country, setCountry }) => {
+  const theme = useTheme();
   // const [chartFilter, setChartFilter] = useState();
   // const [state, setState] = useState("");
 
@@ -38,7 +40,7 @@ const StackedBarChart = ({ country, setCountry }) => {
           tickAmount: 4,
           labels: {
             style: {
-              colors: '#8E9EAE',
+              colors: theme.palette.error[500],
               fontSize: '12px',
               fontWeight: '500',
             },

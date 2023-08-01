@@ -31,7 +31,7 @@ const WalletIconSpan = styled('span')({
 
 const settings = {
   severe: {
-    bgColor: '#EB1633',
+    bgColor: '#A7081E',
     color: '#fff',
     borderColor: '#FAC5C5',
   },
@@ -41,12 +41,12 @@ const settings = {
     borderColor: '#FFECB2',
   },
   low: {
-    bgColor: '#979797',
+    bgColor: '#BDC3C8',
     color: '#000',
     borderColor: '#BDC3C8',
   },
   high: {
-    bgColor: '#EB1633',
+    bgColor: '#D30813',
     color: '#fff',
     borderColor: '#FAC5C5',
   },
