@@ -32,13 +32,18 @@ const StyledMenu = styled((props) => (
       vertical: 'top',
       horizontal: 'right',
     }}
+    sx={{
+      'top': '-5px',
+      'left': '-5px',
+      '& .MuiPaper-root.MuiMenu-paper': { p: 1 },
+    }}
     {...props}
   />
 ))(({ theme }) => ({
   '& .MuiPaper-root': {
     'borderRadius': 8,
     'marginTop': theme.spacing(1),
-    'minWidth': 180,
+    'minWidth': 250,
     'color': '#374151',
     'boxShadow':
       '0px 20px 40px -4px rgba(145, 158, 171, 0.24), 0px 0px 2px 0px rgba(145, 158, 171, 0.24)',
@@ -51,6 +56,7 @@ const StyledMenu = styled((props) => (
         color: theme.palette.text.secondary,
         marginRight: theme.spacing(1.5),
       },
+      '&:hover': { backgroundColor: theme.palette.grey[100] },
       '&:active': {
         backgroundColor: alpha(
           theme.palette.primary.main,
@@ -67,8 +73,6 @@ const StyledMenu = styled((props) => (
     },
   },
 }));
-
-const ITEM_HEIGHT = 48;
 
 export default function LocationMenu({ country, setCountry, StaticMenu }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -99,7 +103,13 @@ export default function LocationMenu({ country, setCountry, StaticMenu }) {
           color: (theme) =>
             country === 'All locations' ? '#000' : theme.palette.primary.main,
         }}
-        endIcon={anchorEl ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+        endIcon={
+          anchorEl ? (
+            <KeyboardArrowUpIcon color="primary" />
+          ) : (
+            <KeyboardArrowDownIcon color="primary" />
+          )
+        }
       >
         {country}
       </MenuButton>
@@ -113,7 +123,7 @@ export default function LocationMenu({ country, setCountry, StaticMenu }) {
         onClose={() => handleClose(country)}
         PaperProps={{
           style: {
-            maxHeight: ITEM_HEIGHT * 4.5,
+            maxHeight: 316,
           },
         }}
       >

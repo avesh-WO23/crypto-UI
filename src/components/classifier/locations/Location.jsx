@@ -25,6 +25,7 @@ const Location = () => {
         justifyContent={'space-between'}
         alignItems={'center'}
         px={2}
+        pt={2}
       >
         <Typography variant="h6">Locations</Typography>
         <LocationMenu

@@ -130,6 +130,7 @@ const BalanceBanner = ({
             </Typography>
             <Typography variant="h3" pt={1}>
               {amount}
+              {'  '}
               {currency}
             </Typography>
           </Stack>
@@ -146,7 +147,7 @@ const BalanceBanner = ({
                       color: (theme) => theme.palette.primary.dark,
                     }}
                   >
-                    600 $
+                    600$
                   </Typography>
                 </Stack>
                 <Stack direction={'row'} alignItems={'center'}>
@@ -159,7 +160,7 @@ const BalanceBanner = ({
                       color: (theme) => theme.palette.primary.dark,
                     }}
                   >
-                    1050 $
+                    1050$
                   </Typography>
                 </Stack>
               </Box>
