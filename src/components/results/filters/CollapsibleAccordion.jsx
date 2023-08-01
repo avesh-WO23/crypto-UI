@@ -32,29 +32,51 @@ export default function CollapsibleAccordion({
   }, [selectedLocation]);
 
   const handleChange = (country, state) => (event) => {
+    let newState = { ...selectedLocation };
+
+    // If user select state
     if (state) {
-      setSelectedLocation((prev) => ({
-        ...prev,
-        [country]: {
-          states: prev?.[country]?.states.includes(state)
-            ? prev?.[country]?.states.filter((e) => e !== state)
-            : prev?.[country]?.states?.length > 0
-            ? [...(prev?.[country]?.states || []), state]
-            : [state],
-        },
-      }));
+      // if user change state and if there is not states selected for country then remove country
+      if (
+        selectedLocation?.[country]?.states.includes(state) &&
+        selectedLocation?.[country]?.states.filter((e) => e !== state)
+          ?.length === 0
+      ) {
+        delete newState[country];
+      } else {
+        newState = {
+          ...newState,
+          [country]: {
+            states: selectedLocation?.[country]?.states.includes(state)
+              ? selectedLocation?.[country]?.states.filter((e) => e !== state)
+              : selectedLocation?.[country]?.states?.length > 0
+              ? [...(selectedLocation?.[country]?.states || []), state]
+              : [state],
+          },
+        };
+      }
     } else {
       const isAlreadyInList =
         [country] in selectedLocation && selectedLocation?.isAll?.(country);
-      setSelectedLocation((prev) => ({
-        ...prev,
-        [country]: {
-          states: isAlreadyInList
-            ? []
-            : LOCATIONS.find((c) => c.country === country)?.states,
-        },
-      }));
+
+      // if country already in object then delete
+      if (isAlreadyInList) {
+        delete newState[country];
+      } else {
+        newState = {
+          ...newState,
+          [country]: {
+            states: LOCATIONS.find((c) => c.country === country)?.states,
+          },
+        };
+      }
     }
+
+    setSelectedLocation((prev) => ({
+      isAll: prev.isAll,
+      isPartial: prev.isPartial,
+      ...newState,
+    }));
   };
 
   const handleAllCountry = (country) => (event) => {

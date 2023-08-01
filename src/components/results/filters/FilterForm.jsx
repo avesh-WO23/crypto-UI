@@ -54,16 +54,32 @@ const FilterForm = ({ handleDrawer }) => {
 
   //Submit the Form
   const handleSubmit = () => {
-    searchParams.set('min', filterForm?.balanceRange[0]);
-    searchParams.set('max', filterForm?.balanceRange[1]);
+    if (
+      range.min !== filterForm?.balanceRange[0] ||
+      range.max !== filterForm?.balanceRange[1]
+    ) {
+      searchParams.set('min', filterForm?.balanceRange[0]);
+      searchParams.set('max', filterForm?.balanceRange[1]);
+    } else {
+      searchParams.delete('min');
+      searchParams.delete('max');
+    }
+
     if (filterForm?.riskScores?.length) {
       searchParams.set('riskScores', filterForm.riskScores.join(','));
+    } else {
+      searchParams.delete('riskScores');
     }
+
     const locations = { ...selectedLocation };
     delete locations.isAll;
     delete locations.isPartial;
 
-    searchParams.set('states', JSON.stringify(locations));
+    if (Object.keys(locations)?.length > 0) {
+      searchParams.set('states', JSON.stringify(locations));
+    } else {
+      searchParams.delete('states');
+    }
 
     setSearchParams(searchParams);
     handleDrawer('filters');

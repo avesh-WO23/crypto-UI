@@ -52,6 +52,13 @@ const settings = {
   },
 };
 
+const walletIdSx = {
+  maxWidth: '155px',
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+};
+
 const BalanceBanner = ({
   balance,
   isResultPage = false,
@@ -95,7 +102,9 @@ const BalanceBanner = ({
         <Stack direction={'row'} justifyContent={'space-between'}>
           <Stack direction={'row'} alignItems={'center'}>
             <WalletIconSpan />
-            <Typography variant="display6">WvzFY5rVKogxzRbWv</Typography>
+            <Typography variant="display6" sx={walletIdSx}>
+              WvzFY5rVKogxzRbWv
+            </Typography>
           </Stack>
           <SeverityLabel
             text={status}
