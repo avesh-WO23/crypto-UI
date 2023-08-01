@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import BalanceBanner from '../classifier/banner/BalanceBanner';
 import { Container } from '../common/Container';
 import ReportPopper from '../results/ReportPopper';
+import NoResults from './NoResults';
 
 const DummyResults = [
   {
@@ -51,15 +52,19 @@ const SearchedResults = () => {
   return (
     <>
       <Container sx={{ position: 'relative' }} gap={2}>
-        {DummyResults.map((balance) => (
-          <BalanceBanner
-            key={balance.id}
-            balance={balance}
-            handleSelectedBalance={() => handleSelectedBalance(balance?.id)}
-            selectedBalance={selectedBalance}
-            isResultPage
-          />
-        ))}
+        {DummyResults.length ? (
+          DummyResults.map((balance) => (
+            <BalanceBanner
+              key={balance.id}
+              balance={balance}
+              handleSelectedBalance={() => handleSelectedBalance(balance?.id)}
+              selectedBalance={selectedBalance}
+              isResultPage
+            />
+          ))
+        ) : (
+          <NoResults />
+        )}
         {selectedBalance?.length ? (
           <ReportPopper
             selectedBalance={selectedBalance}

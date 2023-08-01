@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
+import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
+import { useSearchParams } from 'react-router-dom';
 
 import CustomButton from 'components/common/buttons/CustomButton';
 import MobileHeader from 'components/header/MobileHeader';
@@ -29,10 +31,31 @@ const helpSx = {
 const Results = () => {
   const { filterButtons } = content;
 
+  const [searchParams] = useSearchParams();
+  const [visible, setVisible] = useState({
+    sort: searchParams.has('sort'),
+    filters:
+      searchParams.has('min') ||
+      searchParams.has('max') ||
+      searchParams.has('states') ||
+      searchParams.has('riskScores'),
+  });
+
   const [drawer, setDrawer] = useState({
     sort: false,
     filters: false,
   });
+
+  useEffect(() => {
+    setVisible({
+      sort: searchParams.has('sort'),
+      filters:
+        searchParams.has('min') ||
+        searchParams.has('max') ||
+        searchParams.has('states') ||
+        searchParams.has('riskScores'),
+    });
+  }, [searchParams]);
 
   const handleDrawer = (name) => {
     setDrawer((prev) => ({
@@ -47,14 +70,21 @@ const Results = () => {
         endSection={
           <Box display={'flex'} alignItems={'center'} gap={1}>
             {filterButtons.map((btn, i) => (
-              <CustomButton
+              <Badge
+                color="warning"
+                variant="dot"
+                invisible={!visible[btn.text.toLowerCase()]}
                 key={`${btn.text}-${i}`}
-                sx={filterSx}
-                startIcon={<img src={btn.icon} alt="filter" />}
-                onClick={() => handleDrawer(btn.text)}
+                sx={{ '& .MuiBadge-badge': { top: 3, right: 3 } }}
               >
-                {btn.text}
-              </CustomButton>
+                <CustomButton
+                  sx={filterSx}
+                  startIcon={<img src={btn.icon} alt="filter" />}
+                  onClick={() => handleDrawer(btn.text)}
+                >
+                  {btn.text}
+                </CustomButton>
+              </Badge>
             ))}
             <HelpRoundedIcon sx={helpSx} />
           </Box>
