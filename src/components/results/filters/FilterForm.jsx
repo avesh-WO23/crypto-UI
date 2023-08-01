@@ -18,13 +18,18 @@ const LOCATIONS = [
   { country: 'India', states: ['Gujarat', 'Punjab', 'Maharashtra'] },
 ];
 
+const range = {
+  min: 0,
+  max: 6000,
+};
+
 const FilterForm = ({ handleDrawer }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [filterForm, setFilterForm] = useState({
     balanceRange: [
-      Number(searchParams.get('min')) || 30,
-      Number(searchParams.get('max')) || 40,
+      Number(searchParams.get('min')) || range.min,
+      Number(searchParams.get('max')) || range.max,
     ],
     riskScores: searchParams.get('riskScores')?.split(',') || [],
   });
@@ -51,10 +56,9 @@ const FilterForm = ({ handleDrawer }) => {
   const handleSubmit = () => {
     searchParams.set('min', filterForm?.balanceRange[0]);
     searchParams.set('max', filterForm?.balanceRange[1]);
-    searchParams.set(
-      'riskScores',
-      filterForm?.riskScores?.length ? filterForm.riskScores.join(',') : []
-    );
+    if (filterForm?.riskScores?.length) {
+      searchParams.set('riskScores', filterForm.riskScores.join(','));
+    }
     const locations = { ...selectedLocation };
     delete locations.isAll;
     delete locations.isPartial;
@@ -70,7 +74,7 @@ const FilterForm = ({ handleDrawer }) => {
     handleDrawer('filters');
     setFilterForm({
       ...filterForm,
-      filters: { balanceRange: [30, 40], riskScores: [] },
+      filters: { balanceRange: [range.min, range.max], riskScores: [] },
     });
     searchParams.delete('min');
     searchParams.delete('max');
@@ -94,7 +98,11 @@ const FilterForm = ({ handleDrawer }) => {
         <Typography variant="h6">Filters</Typography>
         <CloseIcon onClick={() => handleDrawer('filters')} />
       </Box>
-      <BalanceRange filterForm={filterForm} setFilterForm={setFilterForm} />
+      <BalanceRange
+        filterForm={filterForm}
+        setFilterForm={setFilterForm}
+        range={range}
+      />
       <Divider />
       <RiskScore filterForm={filterForm} setFilterForm={setFilterForm} />
       <Divider />
