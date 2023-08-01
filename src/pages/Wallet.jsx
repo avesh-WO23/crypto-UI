@@ -1,5 +1,3 @@
-import React from 'react';
-
 import DescriptionIcon from '@mui/icons-material/Description';
 import { Box } from '@mui/material';
 import Divider from '@mui/material/Divider';
