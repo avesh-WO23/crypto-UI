@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Box } from '@mui/material';
@@ -7,7 +7,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { useSearchParams } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 
 const LOCATIONS = [
   { country: 'USA', states: ['Alabama', 'Georgia', 'Missisipi'] },
@@ -15,25 +15,10 @@ const LOCATIONS = [
   { country: 'India', states: ['Gujarat', 'Punjab', 'Maharashtra'] },
 ];
 
-export default function CollapsibleAccordion() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [selectedLocation, setSelectedLocation] = React.useState(() => {
-    const getLengthStates = (country) => {
-      return LOCATIONS.find((c) => c.country === country)?.states?.length;
-    };
-    return {
-      isAll: function (country) {
-        return this?.[country]?.states?.length === getLengthStates(country);
-      },
-      isPartial: function (country) {
-        return (
-          this?.[country]?.states?.length > 0 &&
-          this?.[country]?.states?.length !== getLengthStates(country)
-        );
-      },
-    };
-  });
-
+export default function CollapsibleAccordion({
+  selectedLocation,
+  setSelectedLocation,
+}) {
   const isAllSelected = useMemo(() => {
     let allSelected = true;
     const allCountriesName = LOCATIONS.map((c) => c.country);
@@ -71,24 +56,6 @@ export default function CollapsibleAccordion() {
       }));
     }
   };
-
-  useEffect(() => {
-    const states = searchParams.get('states');
-    setSelectedLocation((prev) => {
-      return {
-        ...prev,
-        ...JSON.parse(states),
-      };
-    });
-  }, [searchParams]);
-
-  useEffect(() => {
-    const contries = { ...selectedLocation };
-    delete contries.isAll;
-    delete contries.isPartial;
-
-    setSearchParams({ states: JSON.stringify(contries) });
-  }, [selectedLocation, setSearchParams]);
 
   const handleAllCountry = (country) => (event) => {
     if (country === 'All') {
@@ -186,3 +153,8 @@ export default function CollapsibleAccordion() {
     </Box>
   );
 }
+
+CollapsibleAccordion.propTypes = {
+  selectedLocation: PropTypes.object,
+  setSelectedLocation: PropTypes.func,
+};

@@ -5,44 +5,69 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import { PropTypes } from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-
-import { filterActions } from 'store/filter-drawer/filterSlice';
 
 import FormActions from '../common/FormActions';
 import BalanceRange from './BalanceRange';
 import CollapsibleAccordion from './CollapsibleAccordion';
 import RiskScore from './RiskScore';
 
-const FilterForm = () => {
-  const dispatch = useDispatch();
-  const { sort } = useSelector((state) => state.filterDrawer);
+const LOCATIONS = [
+  { country: 'USA', states: ['Alabama', 'Georgia', 'Missisipi'] },
+  { country: 'Colombia', states: ['Amazonas', 'Antioquia', 'Arauca'] },
+  { country: 'India', states: ['Gujarat', 'Punjab', 'Maharashtra'] },
+];
+
+const FilterForm = ({ handleDrawer }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [filterForm, setFilterForm] = useState({
     balanceRange: [
-      searchParams.get('min') || 30,
-      searchParams.get('max') || 40,
+      Number(searchParams.get('min')) || 30,
+      Number(searchParams.get('max')) || 40,
     ],
     riskScores: searchParams.get('riskScores')?.split(',') || [],
   });
 
+  const [selectedLocation, setSelectedLocation] = useState(() => {
+    const getLengthStates = (country) => {
+      return LOCATIONS.find((c) => c.country === country)?.states?.length;
+    };
+    return {
+      isAll: function (country) {
+        return this?.[country]?.states?.length === getLengthStates(country);
+      },
+      isPartial: function (country) {
+        return (
+          this?.[country]?.states?.length > 0 &&
+          this?.[country]?.states?.length !== getLengthStates(country)
+        );
+      },
+      ...JSON.parse(searchParams.get('states')),
+    };
+  });
+
   //Submit the Form
   const handleSubmit = () => {
-    searchParams.append('min', filterForm?.balanceRange[0]);
-    searchParams.append('max', filterForm?.balanceRange[1]);
-    searchParams.append(
+    searchParams.set('min', filterForm?.balanceRange[0]);
+    searchParams.set('max', filterForm?.balanceRange[1]);
+    searchParams.set(
       'riskScores',
       filterForm?.riskScores?.length ? filterForm.riskScores.join(',') : []
     );
+    const locations = { ...selectedLocation };
+    delete locations.isAll;
+    delete locations.isPartial;
+
+    searchParams.set('states', JSON.stringify(locations));
 
     setSearchParams(searchParams);
-    dispatch(filterActions.toggleDrawer(sort ? 'sort' : 'filters'));
+    handleDrawer('filters');
   };
 
   //Clear the Form
   const handleClear = () => {
+    handleDrawer('filters');
     setFilterForm({
       ...filterForm,
       filters: { balanceRange: [30, 40], riskScores: [] },
@@ -50,6 +75,8 @@ const FilterForm = () => {
     searchParams.delete('min');
     searchParams.delete('max');
     searchParams.delete('riskScores');
+    searchParams.delete('states');
+    setSearchParams(searchParams);
   };
 
   return (
@@ -65,11 +92,7 @@ const FilterForm = () => {
         zIndex={1}
       >
         <Typography variant="h6">Filters</Typography>
-        <CloseIcon
-          onClick={() =>
-            dispatch(filterActions.toggleDrawer(sort ? 'sort' : 'filters'))
-          }
-        />
+        <CloseIcon onClick={() => handleDrawer('filters')} />
       </Box>
       <BalanceRange filterForm={filterForm} setFilterForm={setFilterForm} />
       <Divider />
@@ -77,7 +100,10 @@ const FilterForm = () => {
       <Divider />
       <Box px={3} py={3} minHeight={280}>
         <Typography variant="h6">Locations</Typography>
-        <CollapsibleAccordion />
+        <CollapsibleAccordion
+          selectedLocation={selectedLocation}
+          setSelectedLocation={setSelectedLocation}
+        />
       </Box>
       <FormActions handleSubmit={handleSubmit} handleClear={handleClear} />
     </>
@@ -85,8 +111,7 @@ const FilterForm = () => {
 };
 
 FilterForm.propTypes = {
-  filterState: PropTypes.object,
-  setFilterState: PropTypes.func,
+  handleDrawer: PropTypes.func,
 };
 
 export default FilterForm;

@@ -7,42 +7,37 @@ import Grid from '@mui/material/Grid';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import Typography from '@mui/material/Typography';
-import { useDispatch, useSelector } from 'react-redux';
+import { PropTypes } from 'prop-types';
 import { useSearchParams } from 'react-router-dom';
 
 import FormActions from 'components/results/common/FormActions';
-import { filterActions } from 'store/filter-drawer/filterSlice';
 
 const sortBy = ['Total balance', 'Total Received', 'Total spent', 'Severity'];
 
-const SortForm = () => {
-  const dispatch = useDispatch();
+const SortForm = ({ handleDrawer }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [sortType, setSortType] = useState(searchParams.get('sort') || '');
-  const { sort } = useSelector((state) => state.filterDrawer);
 
   //Submit the Form
   const handleSubmit = () => {
-    searchParams.append('sort', sortType);
+    searchParams.set('sort', sortType);
     setSearchParams(searchParams);
-    dispatch(filterActions.toggleDrawer(sort ? 'sort' : 'filters'));
+    handleDrawer('sort');
   };
 
   //Clear the Form
   const handleClear = () => {
     setSortType('');
     searchParams.delete('sort');
+    setSearchParams(searchParams);
+    handleDrawer('sort');
   };
   return (
     <>
       <Box display={'flex'} justifyContent={'space-between'} px={3} py={3}>
         <Typography variant="h6">Sort by</Typography>
-        <CloseIcon
-          onClick={() =>
-            dispatch(filterActions.toggleDrawer(sort ? 'sort' : 'filters'))
-          }
-        />
+        <CloseIcon onClick={() => handleDrawer('sort')} />
       </Box>
       <Box px={3} minHeight={200}>
         <RadioGroup
@@ -71,3 +66,7 @@ const SortForm = () => {
 };
 
 export default SortForm;
+
+SortForm.propTypes = {
+  handleDrawer: PropTypes.func,
+};

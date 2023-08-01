@@ -23,7 +23,7 @@ const reportBtnSx = {
 };
 
 const Wallet = () => {
-  const isLoading = true;
+  const isLoading = false;
   return (
     <Box pb={12}>
       <MobileHeader />
