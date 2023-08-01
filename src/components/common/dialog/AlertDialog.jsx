@@ -18,6 +18,8 @@ export default function AlertDialog(props) {
     submitBtnText,
     handleClose,
     handleSubmit,
+    isLoading = false,
+    disabled = false,
     sx,
   } = props;
   return (
@@ -30,12 +32,16 @@ export default function AlertDialog(props) {
     >
       <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
       <DialogContent>
-        <DialogContentText
-          id="alert-dialog-description"
-          sx={{ color: (theme) => theme.palette.primary.dark }}
-        >
-          {description}
-        </DialogContentText>
+        {typeof description === 'string' ? (
+          <DialogContentText
+            id="alert-dialog-description"
+            sx={{ color: (theme) => theme.palette.primary.dark }}
+          >
+            {description}
+          </DialogContentText>
+        ) : (
+          description
+        )}
       </DialogContent>
       <DialogActions sx={{ px: 3, pb: 2 }}>
         <CustomButton
@@ -54,7 +60,8 @@ export default function AlertDialog(props) {
           }}
           onClick={handleSubmit}
           fullWidth
-          isLoading={false}
+          isLoading={isLoading}
+          disabled={disabled}
         >
           {submitBtnText || 'Agree'}
         </CustomButton>
@@ -66,10 +73,12 @@ export default function AlertDialog(props) {
 AlertDialog.propTypes = {
   open: PropTypes.bool,
   title: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
-  description: PropTypes.string,
+  description: PropTypes.any,
   cancelBtnText: PropTypes.string,
   submitBtnText: PropTypes.string,
   handleClose: PropTypes.func,
   handleSubmit: PropTypes.func,
   sx: PropTypes.object,
+  disabled: PropTypes.bool,
+  isLoading: PropTypes.bool,
 };
