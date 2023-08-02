@@ -28,7 +28,9 @@ export default function HookTextField(props) {
         sx={{
           '& .MuiInputBase-root': {
             borderRadius: 2,
-            mt: 1,
+            fieldset: {
+              borderColor: (theme) => theme.palette.grey[300],
+            },
             ...sx,
           },
         }}
